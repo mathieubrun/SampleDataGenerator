@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SampleDataGenerator</id>
+    <version>0.1.0</version>
+    <authors>Mathieu</authors>
+    <owners>Mathieu</owners>
+    <projectUrl>https://github.com/mathieubrun/SampleDataGenerator</projectUrl>
+    <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Sample data generator</description>
+    <copyright>Copyright 2013</copyright>
+    <tags>sample data demo generator generation</tags>
+  </metadata>
+</package>
