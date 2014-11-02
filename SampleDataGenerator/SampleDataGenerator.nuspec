@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SampleDataGenerator</id>
-    <version>0.1.0</version>
+    <version>$version$</version>
     <authors>Mathieu</authors>
     <owners>Mathieu</owners>
     <projectUrl>https://github.com/mathieubrun/SampleDataGenerator</projectUrl>
