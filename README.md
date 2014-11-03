@@ -35,3 +35,6 @@ History
 =======
 
 Originally present in the code of https://github.com/mathieubrun/Samples.AngularBootstrapWebApi, I chose to make it a library of its own, mainly for learning fluent API design.
+
+[![Build status](https://ci.appveyor.com/api/projects/status/6pr6gdy8osxpxbti?svg=true)](https://ci.appveyor.com/project/Mathieu/sampledatagenerator)
+
