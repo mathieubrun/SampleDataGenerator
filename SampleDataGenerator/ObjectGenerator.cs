@@ -22,20 +22,20 @@
         public PropertyGenerator<TObj, TProp> For<TProp>(Expression<Func<TObj, TProp>> propertyExpression)
         {
             var p = new PropertyGenerator<TObj, TProp>(this, propertyExpression);
-            propertyGenerators.Add(p);
+            this.propertyGenerators.Add(p);
             return p;
         }
 
         /// <summary>
         /// Defines the property setter that will be used
         /// </summary>
-        /// <typeparam name="TProp">Property type</typeparam>
+        /// <typeparam name="TObj">Property type</typeparam>
         /// <param name="propertyExpression">The setter</param>
         /// <returns></returns>
         public DatePropertyGenerator<TObj> For(Expression<Func<TObj, DateTime>> propertyExpression)
         {
             var p = new DatePropertyGenerator<TObj>(this, propertyExpression);
-            propertyGenerators.Add(p);
+            this.propertyGenerators.Add(p);
             return p;
         }
 
@@ -47,14 +47,14 @@
         public IEnumerable<TObj> Generate(int count)
         {
             return Enumerable.Range(0, count)
-                .Select(x => Create());
+                .Select(x => this.Create());
         }
 
         private TObj Create()
         {
             var o = Activator.CreateInstance<TObj>();
 
-            propertyGenerators.ForEach(x => x.SetValue(o));
+            this.propertyGenerators.ForEach(x => x.SetValue(o));
 
             return o;
         }
