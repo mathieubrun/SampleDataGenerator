@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PropertyGenerator´TObj.cs" />
     <Compile Include="DatePropertyGenerator.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="StaticData.cs" />

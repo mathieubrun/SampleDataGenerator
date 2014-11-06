@@ -1,17 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Linq;
-
-namespace SampleDataGenerator.Tests
+﻿namespace SampleDataGenerator.Tests
 {
-    public class Client
-    {
-        public Guid Id { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Company { get; set; }
-    }
+    using System;
+    using System.Linq;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class GeneratorTest
@@ -38,7 +30,6 @@ namespace SampleDataGenerator.Tests
                         .ChooseFrom(StaticData.Companies)
                     .For(x => x.Id)
                         .CreateUsing(() => Guid.NewGuid());
-                    
 
             // act
             var data = generator.Generate(50).ToList();
