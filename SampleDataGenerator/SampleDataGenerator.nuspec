@@ -3,13 +3,13 @@
   <metadata>
     <id>SampleDataGenerator</id>
     <version>$version$</version>
-    <authors>Mathieu</authors>
-    <owners>Mathieu</owners>
+    <authors>Mathieu Brun</authors>
+    <owners>Mathieu Brun</owners>
     <projectUrl>https://github.com/mathieubrun/SampleDataGenerator</projectUrl>
     <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Sample data generator</description>
-    <copyright>Copyright 2013</copyright>
+    <description>Easily generate sample data for your demos, using fluent API</description>
+    <copyright>Copyright Mathieu Brun 2014</copyright>
     <tags>sample data demo generator generation</tags>
   </metadata>
 </package>
