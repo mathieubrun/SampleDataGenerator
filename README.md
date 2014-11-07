@@ -1,7 +1,14 @@
-Cogimator.SampleDataGenerator
+SampleDataGenerator
 =============================
 
 Sample data generator simplifies the process of creating random data for demo purposes.
+
+Installation
+============
+
+Using nuget package manager :
+
+Install-Package SampleDataGenerator
 
 Usage
 =====
