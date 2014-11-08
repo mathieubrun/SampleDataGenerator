@@ -13,5 +13,7 @@
         public string LastName { get; set; }
 
         public string Company { get; set; }
+
+        public Address Address { get; set; }
     }
 }

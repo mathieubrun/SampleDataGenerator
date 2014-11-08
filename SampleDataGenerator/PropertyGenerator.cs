@@ -44,6 +44,13 @@
             return this.From;
         }
 
+        public ObjectGenerator<TObj> CreateUsing(ObjectGenerator<TProp> generator)
+        {
+            this.GetVal = () => generator.Generate(1).First();
+
+            return this.From;
+        }
+
         internal override void SetValue(TObj o)
         {
             this.action(o, this.GetVal());
