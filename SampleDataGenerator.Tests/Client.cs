@@ -1,6 +1,7 @@
 ﻿namespace SampleDataGenerator.Tests
 {
     using System;
+    using System.Collections.Generic;
 
     public class Client
     {
@@ -15,5 +16,7 @@
         public string Company { get; set; }
 
         public Address Address { get; set; }
+
+        public IEnumerable<Address> Addresses { get; set; }
     }
 }

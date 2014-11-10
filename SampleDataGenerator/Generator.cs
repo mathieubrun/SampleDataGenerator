@@ -1,4 +1,5 @@
-﻿namespace SampleDataGenerator
+﻿using SampleDataGenerator.Builders;
+namespace SampleDataGenerator
 {
     /// <summary>
     /// Data generator entry point
@@ -6,13 +7,13 @@
     public class Generator
     {
         /// <summary>
-        /// Specifies the type to generate
+        /// Creates an object generator for the type you want to generate instances of.
         /// </summary>
-        /// <typeparam name="TObj">Object type</typeparam>
-        /// <returns></returns>
-        public static ObjectGenerator<TObj> For<TObj>()
+        /// <typeparam name="TObj">Object type to generate</typeparam>
+        /// <returns>An ObjectGenerator instance for TObj type</returns>
+        public static ObjectGeneratorBuilder<TObj> For<TObj>()
         {
-            return new ObjectGenerator<TObj>();
+            return new ObjectGeneratorBuilder<TObj>();
         }
     }
 }
