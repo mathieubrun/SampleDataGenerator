@@ -74,6 +74,8 @@
                         .ChooseFrom(StaticData.Companies)
                     .For(x => x.Address)
                         .CreateUsing(adressGenerator)
+                    .For(x => x.Addresses)
+                        .CreateUsing(adressGenerator, 3)
                     .For(x => x.Id)
                         .CreateUsing(() => Guid.NewGuid());
 

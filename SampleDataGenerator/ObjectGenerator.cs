@@ -11,39 +11,34 @@
     /// <typeparam name="TObj">Object type</typeparam>
     public class ObjectGenerator<TObj>
     {
-        private readonly List<PropertyGenerator<TObj>> propertyGenerators = new List<PropertyGenerator<TObj>>();
-
-        /// <summary>
-        /// Defines the property setter that will be used
-        /// </summary>
-        /// <typeparam name="TProp">Property type</typeparam>
-        /// <param name="propertyExpression">The setter</param>
-        /// <returns></returns>
-        public PropertyGenerator<TObj, TProp> For<TProp>(Expression<Func<TObj, TProp>> propertyExpression)
+        private class Assigner<TProp> : IPropertyAssigner<TObj>
         {
-            var p = new PropertyGenerator<TObj, TProp>(this, propertyExpression);
-            this.propertyGenerators.Add(p);
-            return p;
+            private readonly Action<TObj, TProp> action;
+            private readonly IPropertyGenerator<TProp> generator;
+
+            public Assigner(Expression<Func<TObj, TProp>> expr, IPropertyGenerator<TProp> generator)
+            {
+                var member = expr.Body;
+                var param = Expression.Parameter(typeof(TProp), "value");
+                var set = Expression.Lambda<Action<TObj, TProp>>(Expression.Assign(member, param), expr.Parameters[0], param);
+
+                this.action = set.Compile();
+                this.generator = generator;
+            }
+
+            public void SetValue(TObj target)
+            {
+                action(target, generator.Get());
+            }
         }
 
-        /// <summary>
-        /// Defines the property setter that will be used
-        /// </summary>
-        /// <typeparam name="TObj">Property type</typeparam>
-        /// <param name="propertyExpression">The setter</param>
-        /// <returns></returns>
-        public DatePropertyGenerator<TObj> For(Expression<Func<TObj, DateTime>> propertyExpression)
+        private List<IPropertyAssigner<TObj>> assigners = new List<IPropertyAssigner<TObj>>();
+
+        internal void Add<TProp>(IPropertyGenerator<TProp> build, Expression<Func<TObj, TProp>> expr)
         {
-            var p = new DatePropertyGenerator<TObj>(this, propertyExpression);
-            this.propertyGenerators.Add(p);
-            return p;
+            this.assigners.Add(new Assigner<TProp>(expr, build));
         }
 
-        /// <summary>
-        /// Generates an enumeration of TObj
-        /// </summary>
-        /// <param name="count">How many TObj will get created</param>
-        /// <returns></returns>
         public IEnumerable<TObj> Generate(int count)
         {
             return Enumerable.Range(0, count)
@@ -54,7 +49,7 @@
         {
             var o = Activator.CreateInstance<TObj>();
 
-            this.propertyGenerators.ForEach(x => x.SetValue(o));
+            this.assigners.ForEach(x => x.SetValue(o));
 
             return o;
         }
