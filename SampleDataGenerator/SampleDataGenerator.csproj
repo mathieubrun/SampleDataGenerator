@@ -53,7 +53,6 @@
     <Compile Include="Generators\SequencialGenerator.cs" />
     <Compile Include="IPropertyAssigner.cs" />
     <Compile Include="IPropertyGenerator.cs" />
-    <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="StaticData.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="ObjectGenerator.cs" />
