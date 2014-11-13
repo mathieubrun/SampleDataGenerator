@@ -37,6 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -57,13 +60,18 @@
     <Compile Include="PropertyGeneratorTest.cs" />
     <Compile Include="GeneratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EnumerableExtensionsTest.cs" />
+    <Compile Include="Tests\SequentialGeneratorTest.cs" />
+    <Compile Include="Tests\ObjectGeneratorGeneratorTest.cs" />
+    <Compile Include="Tests\FuncGeneratorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SampleDataGenerator\SampleDataGenerator.csproj">
       <Project>{5e0f9315-0f5f-40ff-9ab8-d7d30696a8d3}</Project>
       <Name>Cogimator.SampleDataGenerator</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
