@@ -68,7 +68,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SampleDataGenerator\SampleDataGenerator.csproj">
       <Project>{5e0f9315-0f5f-40ff-9ab8-d7d30696a8d3}</Project>
-      <Name>Cogimator.SampleDataGenerator</Name>
+      <Name>SampleDataGenerator</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
