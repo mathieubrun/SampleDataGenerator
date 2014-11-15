@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Linq.Expressions;
 
-    public class DatePropertyGeneratorBuilder<TObj> : PropertyGeneratorBuilderBase<TObj, DateTime>
+    public class DatePropertyGeneratorBuilder<TObj> : PropertyGeneratorBuilder<TObj, DateTime>
     {
         private readonly Random rnd = new Random();
 
@@ -16,23 +16,19 @@
 
         public ObjectGeneratorBuilder<TObj> Range(DateTime start, DateTime end)
         {
-            var pgen = new FuncGenerator<DateTime>(() => new DateTime(this.LongRandom(start.Ticks, end.Ticks, this.rnd)));
+            var pgen = new FuncGenerator<DateTime>(() => GetDate(start, end));
 
             return this.Add(pgen);
         }
 
-        private long LongRandom(long min, long max, Random rand)
+        private DateTime GetDate(DateTime startDate, DateTime endDate)
         {
-            if (min == max)
-            {
-                return min;
-            }
+            // from : http://stackoverflow.com/a/1483677/971
+            var timeSpan = endDate - startDate;
 
-            byte[] buf = new byte[8];
-            rand.NextBytes(buf);
-            long longRand = BitConverter.ToInt64(buf, 0);
-
-            return Math.Abs(longRand % (max - min)) + min;
+            var newSpan = new TimeSpan(0, rnd.Next(0, (int)timeSpan.TotalMinutes), 0);
+            
+            return startDate + newSpan;
         }
     }
 }

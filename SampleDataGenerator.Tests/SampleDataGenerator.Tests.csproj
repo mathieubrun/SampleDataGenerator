@@ -56,13 +56,14 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="Builders\PropertyGeneratorBuildersTest.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="PropertyGeneratorTest.cs" />
     <Compile Include="GeneratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\SequentialGeneratorTest.cs" />
-    <Compile Include="Tests\ObjectGeneratorGeneratorTest.cs" />
-    <Compile Include="Tests\FuncGeneratorTest.cs" />
+    <Compile Include="Generators\SequentialGeneratorTest.cs" />
+    <Compile Include="Generators\ObjectGeneratorGeneratorTest.cs" />
+    <Compile Include="Generators\FuncGeneratorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SampleDataGenerator\SampleDataGenerator.csproj">

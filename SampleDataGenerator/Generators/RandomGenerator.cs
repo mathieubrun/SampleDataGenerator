@@ -9,7 +9,7 @@ namespace SampleDataGenerator.Generators
     public class RandomGenerator<TProp> : IPropertyGenerator<TProp>
     {
         private readonly IEnumerable<TProp> source;
-        private static readonly Random Rnd = new Random();
+        private static readonly Random rnd = new Random();
 
         public RandomGenerator(params TProp[] source)
         {
@@ -18,7 +18,7 @@ namespace SampleDataGenerator.Generators
 
         public TProp Get()
         {
-            return source.ElementAt(Rnd.Next(source.Count()));
+            return source.ElementAt(rnd.Next(source.Count()));
         }
     }
 }
