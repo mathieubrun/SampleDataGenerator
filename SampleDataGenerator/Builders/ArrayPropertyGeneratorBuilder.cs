@@ -1,15 +1,15 @@
 ﻿namespace SampleDataGenerator.Builders
 {
-    using SampleDataGenerator.Generators;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using SampleDataGenerator.Generators;
 
     public class ArrayPropertyGeneratorBuilder<TObj, TProp> : PropertyGeneratorBuilderBase<TObj, IEnumerable<TProp>>
     {
         public ArrayPropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, IEnumerable<TProp>>> expr)
-            :base(from, expr)
+            : base(from, expr)
         {
         }
 

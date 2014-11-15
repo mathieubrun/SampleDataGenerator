@@ -1,13 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SampleDataGenerator.Generators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SampleDataGenerator.Tests.Generators
+﻿namespace SampleDataGenerator.Tests.Generators
 {
+    using System;
+    using System.Linq;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using SampleDataGenerator.Generators;
+
     [TestClass]
     public class SequentialGeneratorTest
     {
@@ -18,7 +15,7 @@ namespace SampleDataGenerator.Tests.Generators
             var count = 4;
             var range = Enumerable.Range(0, 2).ToArray();
             var generator = new SequencialGenerator<int>(range);
-            
+
             // act
             var result = Enumerable.Range(0, count).Select(x => generator.Get());
 

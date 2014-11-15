@@ -1,14 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using SampleDataGenerator.Generators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SampleDataGenerator.Tests.Generators
+﻿namespace SampleDataGenerator.Tests.Generators
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
+    using SampleDataGenerator.Generators;
+
     [TestClass]
     public class ObjectGeneratorGeneratorTest
     {

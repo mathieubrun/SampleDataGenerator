@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SampleDataGenerator.Generators
+﻿namespace SampleDataGenerator.Generators
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class RandomGenerator<TProp> : IPropertyGenerator<TProp>
     {
+        private static readonly Random Rnd = new Random();
+
         private readonly IEnumerable<TProp> source;
-        private static readonly Random rnd = new Random();
 
         public RandomGenerator(params TProp[] source)
         {
@@ -18,7 +17,7 @@ namespace SampleDataGenerator.Generators
 
         public TProp Get()
         {
-            return source.ElementAt(rnd.Next(source.Count()));
+            return this.source.ElementAt(Rnd.Next(this.source.Count()));
         }
     }
 }

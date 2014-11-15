@@ -11,16 +11,9 @@
 
         public ObjectGeneratorBuilder()
         {
-            generator = new ObjectGenerator<TObj>();
+            this.generator = new ObjectGenerator<TObj>();
         }
 
-        internal ObjectGeneratorBuilder<TObj> Add<TProp>(IPropertyGenerator<TProp> build, Expression<Func<TObj, TProp>> propertyExpression)
-        {
-            generator.Add(build, propertyExpression);
-
-            return this;
-        }
-        
         public PropertyGeneratorBuilder<TObj, TProp> For<TProp>(Expression<Func<TObj, TProp>> propertyExpression)
         {
             return new PropertyGeneratorBuilder<TObj, TProp>(this, propertyExpression);
@@ -44,6 +37,13 @@
         public IEnumerable<TObj> Generate(int count)
         {
             return this.generator.Generate(count);
+        }
+
+        internal ObjectGeneratorBuilder<TObj> Add<TProp>(IPropertyGenerator<TProp> build, Expression<Func<TObj, TProp>> propertyExpression)
+        {
+            this.generator.Add(build, propertyExpression);
+
+            return this;
         }
     }
 }

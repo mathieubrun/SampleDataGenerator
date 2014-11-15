@@ -1,9 +1,8 @@
 ﻿namespace SampleDataGenerator.Builders
 {
-    using SampleDataGenerator.Generators;
     using System;
-    using System.Linq;
     using System.Linq.Expressions;
+    using SampleDataGenerator.Generators;
 
     public class DatePropertyGeneratorBuilder<TObj> : PropertyGeneratorBuilder<TObj, DateTime>
     {
@@ -16,7 +15,7 @@
 
         public ObjectGeneratorBuilder<TObj> Range(DateTime start, DateTime end)
         {
-            var pgen = new FuncGenerator<DateTime>(() => GetDate(start, end));
+            var pgen = new FuncGenerator<DateTime>(() => this.GetDate(start, end));
 
             return this.Add(pgen);
         }
@@ -26,8 +25,8 @@
             // from : http://stackoverflow.com/a/1483677/971
             var timeSpan = endDate - startDate;
 
-            var newSpan = new TimeSpan(0, rnd.Next(0, (int)timeSpan.TotalMinutes), 0);
-            
+            var newSpan = new TimeSpan(0, this.rnd.Next(0, (int)timeSpan.TotalMinutes), 0);
+
             return startDate + newSpan;
         }
     }

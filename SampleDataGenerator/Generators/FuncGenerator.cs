@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SampleDataGenerator.Generators
+﻿namespace SampleDataGenerator.Generators
 {
+    using System;
+    using System.Linq.Expressions;
+
     public class FuncGenerator<TProp> : IPropertyGenerator<TProp>
     {
         private readonly Func<TProp> func;
