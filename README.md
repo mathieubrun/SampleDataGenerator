@@ -34,7 +34,7 @@ var clientGenerator = Generator
     .For(x => x.FirstName)
         .ChooseFrom(StaticData.FirstNames)
     .For(x => x.LastName)
-        .ChooseFrom(StaticData.LastNames)
+        .ChooseRandomlyFrom(StaticData.LastNames)
     .For(x => x.Id)
         .CreateUsing(() => Guid.NewGuid());
 
