@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SampleDataGenerator.Tests.Tests
+namespace SampleDataGenerator.Tests.Generators
 {
     [TestClass]
     public class SequentialGeneratorTest
