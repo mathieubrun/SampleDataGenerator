@@ -1,12 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SampleDataGenerator.Builders;
-using Moq;
-using System.Linq.Expressions;
-using System.Collections.Generic;
-
-namespace SampleDataGenerator.Tests.Builders
+﻿namespace SampleDataGenerator.Tests.Builders
 {
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
+    using SampleDataGenerator.Builders;
+
     [TestClass]
     public class PropertyGeneratorBuildersTest
     {

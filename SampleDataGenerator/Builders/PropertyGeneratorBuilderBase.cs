@@ -1,8 +1,6 @@
 ﻿namespace SampleDataGenerator.Builders
 {
-    using SampleDataGenerator.Generators;
     using System;
-    using System.Linq;
     using System.Linq.Expressions;
 
     public class PropertyGeneratorBuilderBase<TObj, TProp>
@@ -18,7 +16,7 @@
 
         protected ObjectGeneratorBuilder<TObj> Add(IPropertyGenerator<TProp> build)
         {
-            return this.builder.Add<TProp>(build, expr);
+            return this.builder.Add<TProp>(build, this.expr);
         }
     }
 }
