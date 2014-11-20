@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class Client
+    public class Person
     {
         public Guid Id { get; set; }
 
@@ -13,10 +13,6 @@
 
         public string LastName { get; set; }
 
-        public string Company { get; set; }
-
-        public Address Address { get; set; }
-
-        public IEnumerable<Address> Addresses { get; set; }
+        public IEnumerable<Person> Relatives { get; set; }
     }
 }

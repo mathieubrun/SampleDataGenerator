@@ -46,6 +46,7 @@
     <Compile Include="Builders\DatePropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\ObjectGeneratorBuilder.cs" />
     <Compile Include="Builders\PropertyGeneratorBuilder.cs" />
+    <Compile Include="Generators\DateGenerator.cs" />
     <Compile Include="IObjectGenerator.cs" />
     <Compile Include="Generators\ObjectGeneratorGenerator.cs" />
     <Compile Include="Generators\FuncGenerator.cs" />

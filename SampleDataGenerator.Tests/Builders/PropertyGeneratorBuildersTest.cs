@@ -12,9 +12,9 @@
         public void PropertyGeneratorBuilder_Must_return_correct_builder()
         {
             // arrange
-            var objectBuilder = new ObjectGeneratorBuilder<Client>();
+            var objectBuilder = new ObjectGeneratorBuilder<Person>();
 
-            var sut = new PropertyGeneratorBuilder<Client, string>(objectBuilder, x => x.FirstName);
+            var sut = new PropertyGeneratorBuilder<Person, string>(objectBuilder, x => x.FirstName);
 
             // act
             var builder1 = sut.ChooseFrom("");
@@ -31,9 +31,9 @@
         public void DatePropertyGeneratorBuilder_Must_return_correct_builder()
         {
             // arrange
-            var objectBuilder = new ObjectGeneratorBuilder<Client>();
+            var objectBuilder = new ObjectGeneratorBuilder<Person>();
 
-            var sut = new DatePropertyGeneratorBuilder<Client>(objectBuilder, x => x.DateOfBirth);
+            var sut = new DatePropertyGeneratorBuilder<Person>(objectBuilder, x => x.DateOfBirth);
 
             // act
             var builder = sut.Range(DateTime.Now, DateTime.Now);
@@ -46,12 +46,12 @@
         public void ArrayPropertyGeneratorBuilder_Must_return_correct_builder()
         {
             // arrange
-            var objectBuilder = new ObjectGeneratorBuilder<Client>();
+            var objectBuilder = new ObjectGeneratorBuilder<Person>();
 
-            var sut = new ArrayPropertyGeneratorBuilder<Client, Address>(objectBuilder, x => x.Addresses);
+            var sut = new ArrayPropertyGeneratorBuilder<Person, Person>(objectBuilder, x => x.Relatives);
 
             // act
-            var builder = sut.CreateUsing(Mock.Of<IObjectGenerator<Address>>(), 1);
+            var builder = sut.CreateUsing(Mock.Of<IObjectGenerator<Person>>(), 1);
 
             // assert
             Assert.AreSame(builder, objectBuilder);

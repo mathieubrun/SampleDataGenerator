@@ -15,19 +15,9 @@
 
         public ObjectGeneratorBuilder<TObj> Range(DateTime start, DateTime end)
         {
-            var pgen = new FuncGenerator<DateTime>(() => this.GetDate(start, end));
+            var pgen = new DateGenerator(start, end);
 
             return this.Add(pgen);
-        }
-
-        private DateTime GetDate(DateTime startDate, DateTime endDate)
-        {
-            // from : http://stackoverflow.com/a/1483677/971
-            var timeSpan = endDate - startDate;
-
-            var newSpan = new TimeSpan(0, this.rnd.Next(0, (int)timeSpan.TotalMinutes), 0);
-
-            return startDate + newSpan;
-        }
+        }        
     }
 }
