@@ -8,6 +8,7 @@
     [TestClass]
     public class PropertyGeneratorBuildersTest
     {
+
         [TestMethod]
         public void PropertyGeneratorBuilder_Must_return_correct_builder()
         {
@@ -20,11 +21,13 @@
             var builder1 = sut.ChooseFrom("");
             var builder2 = sut.ChooseRandomlyFrom("");
             var builder3 = sut.CreateUsing(() => "");
+            var builder4 = sut.CreateUsing(Mock.Of<IObjectGenerator<string>>());
 
             // assert
             Assert.AreSame(builder1, objectBuilder);
             Assert.AreSame(builder2, objectBuilder);
             Assert.AreSame(builder3, objectBuilder);
+            Assert.AreSame(builder4, objectBuilder);
         }
 
         [TestMethod]
