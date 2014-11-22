@@ -55,6 +55,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Builders\ObjectGeneratorBuildersTest.cs" />
     <Compile Include="Builders\PropertyGeneratorBuildersTest.cs" />
     <Compile Include="Generators\RandomGeneratorTest.cs" />
     <Compile Include="Generators\DateGeneratorTest.cs" />
