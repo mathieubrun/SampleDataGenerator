@@ -42,6 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\ArrayPropertyGeneratorBuilder.cs" />
+    <Compile Include="Builders\IArrayPropertyGeneratorBuilder.cs" />
+    <Compile Include="Builders\IDatePropertyGeneratorBuilder.cs" />
+    <Compile Include="Builders\IObjectGeneratorBuilder.cs" />
+    <Compile Include="Builders\IPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\PropertyGeneratorBuilderBase.cs" />
     <Compile Include="Builders\DatePropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\ObjectGeneratorBuilder.cs" />
