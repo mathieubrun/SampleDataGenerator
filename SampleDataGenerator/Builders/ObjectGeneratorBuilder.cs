@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Linq.Expressions;
 
-    public class ObjectGeneratorBuilder<TObj> : IObjectGenerator<TObj>
+    public class ObjectGeneratorBuilder<TObj> : IObjectGenerator<TObj>, IObjectGeneratorBuilder<TObj>
     {
         private ObjectGenerator<TObj> generator;
 
@@ -14,17 +14,17 @@
             this.generator = new ObjectGenerator<TObj>();
         }
 
-        public PropertyGeneratorBuilder<TObj, TProp> For<TProp>(Expression<Func<TObj, TProp>> propertyExpression)
+        public IPropertyGeneratorBuilder<TObj, TProp> For<TProp>(Expression<Func<TObj, TProp>> propertyExpression)
         {
             return new PropertyGeneratorBuilder<TObj, TProp>(this, propertyExpression);
         }
 
-        public ArrayPropertyGeneratorBuilder<TObj, TProp> For<TProp>(Expression<Func<TObj, IEnumerable<TProp>>> propertyExpression)
+        public IArrayPropertyGeneratorBuilder<TObj, TProp> For<TProp>(Expression<Func<TObj, IEnumerable<TProp>>> propertyExpression)
         {
             return new ArrayPropertyGeneratorBuilder<TObj, TProp>(this, propertyExpression);
         }
 
-        public DatePropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, DateTime>> propertyExpression)
+        public IDatePropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, DateTime>> propertyExpression)
         {
             return new DatePropertyGeneratorBuilder<TObj>(this, propertyExpression);
         }
