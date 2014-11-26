@@ -1,8 +1,7 @@
-﻿namespace SampleDataGenerator.Generators
-{
-    using System;
-    using System.Linq.Expressions;
+﻿using System;
 
+namespace SampleDataGenerator.Generators
+{
     public class DateGenerator : IPropertyGenerator<DateTime>
     {
         private readonly Random rnd = new Random();

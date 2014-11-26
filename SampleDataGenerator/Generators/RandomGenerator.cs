@@ -1,9 +1,9 @@
-﻿namespace SampleDataGenerator.Generators
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
+namespace SampleDataGenerator.Generators
+{
     public class RandomGenerator<TProp> : IPropertyGenerator<TProp>
     {
         private static readonly Random Rnd = new Random();
