@@ -26,6 +26,8 @@ namespace SampleDataGenerator.Tests
                     .ChooseFrom(StaticData.FirstNames)
                 .For(x => x.LastName)
                     .ChooseFrom(StaticData.LastNames)
+                .For(x => x.Description)
+                    .LoremIpsum(2)
                 .For(x => x.Id)
                     .CreateUsing(() => Guid.NewGuid());
 
