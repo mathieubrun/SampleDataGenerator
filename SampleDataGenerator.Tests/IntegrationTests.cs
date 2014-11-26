@@ -27,7 +27,7 @@ namespace SampleDataGenerator.Tests
                 .For(x => x.LastName)
                     .ChooseFrom(StaticData.LastNames)
                 .For(x => x.Phone)
-                    .PhoneNumber("00-00000-00")
+                    .PhoneNumber(StaticData.PhoneNumbersPatterns.France)
                 .For(x => x.Description)
                     .LoremIpsum(2)
                 .For(x => x.Id)

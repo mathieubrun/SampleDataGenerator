@@ -21,13 +21,14 @@ namespace SampleDataGenerator.Sources
 
             foreach (var c in pattern)
             {
-                if (c == '0')
+                switch (c)
                 {
-                    result.Append(rnd.Next(0, 10));
-                }
-                else
-                {
-                    result.Append(c);
+                    case 'X':
+                        result.Append(rnd.Next(0, 10));
+                        break;
+                    default:
+                        result.Append(c);
+                        break;
                 }
             }
 
