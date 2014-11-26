@@ -10,16 +10,28 @@ namespace SampleDataGenerator.Generators
     {
         private readonly ISource<string> source;
         private readonly int count;
+        private readonly string separator;
 
-        public StringGenerator(ISource<string> source, int count)
+        public StringGenerator(ISource<string> source)
         {
             this.source = source;
+        }
+
+        public StringGenerator(ISource<string> source, int count, string separator)
+            : this(source)
+        {
             this.count = count;
+            this.separator = separator;
         }
 
         public string Get()
         {
-            return string.Join(" ", this.source.Get(count).ToArray());
+            if (count == 0)
+            {
+                return source.Get();
+            }
+            
+            return string.Join(separator, this.source.Get(count).ToArray());
         }
     }
 }
