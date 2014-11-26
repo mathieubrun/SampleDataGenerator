@@ -65,6 +65,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Generators\ObjectGeneratorGeneratorTest.cs" />
     <Compile Include="Generators\FuncGeneratorTest.cs" />
+    <Compile Include="Sources\PhoneNumberSourceTest.cs" />
     <Compile Include="Sources\RandomSourceTest.cs" />
     <Compile Include="Sources\SequencialSourceTest.cs" />
   </ItemGroup>
