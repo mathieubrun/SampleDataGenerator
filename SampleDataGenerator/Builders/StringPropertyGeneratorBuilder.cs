@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using SampleDataGenerator.Generators;
+using SampleDataGenerator.Sources;
 
 namespace SampleDataGenerator.Builders
 {
@@ -15,7 +16,7 @@ namespace SampleDataGenerator.Builders
 
         public IObjectGeneratorBuilder<TObj> LoremIpsum(int sentences)
         {
-            var pgen = new StringGenerator(StaticData.LoremIpsum, sentences);
+            var pgen = new StringGenerator(new RandomSource<string>(StaticData.LoremIpsum), sentences);
 
             return this.Add(pgen);
         }
