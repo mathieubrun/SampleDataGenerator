@@ -13,6 +13,8 @@ namespace SampleDataGenerator
 
         private static Lazy<string[]> companies = new Lazy<string[]>(() => ReadData("Companies"));
 
+        private static Lazy<string[]> loremIpsum = new Lazy<string[]>(() => ReadData("LoremIpsum"));
+
         /// <summary>
         /// First names
         /// </summary>
@@ -63,6 +65,20 @@ namespace SampleDataGenerator
             get
             {
                 return countries.Value;
+            }
+        }
+
+        /// <summary>
+        /// Countries
+        /// </summary>
+        /// <remarks>
+        /// From http://en.wikipedia.org/wiki/Lorem_ipsum#Latin_source
+        /// </remarks>
+        public static string[] LoremIpsum
+        {
+            get
+            {
+                return loremIpsum.Value;
             }
         }
 
