@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SampleDataGenerator.Generators;
+using SampleDataGenerator.Sources;
 
-namespace SampleDataGenerator.Tests.Generators
+namespace SampleDataGenerator.Tests.Sources
 {
     [TestClass]
-    public class SequentialGeneratorTest
+    public class SequentialSourceTest
     {
         [TestMethod]
         public void Loop_must_expand_list_if_needed()
@@ -14,10 +14,25 @@ namespace SampleDataGenerator.Tests.Generators
             // arrange
             var count = 4;
             var range = Enumerable.Range(0, 2).ToArray();
-            var generator = new SequencialGenerator<int>(range);
+            var generator = new SequencialSource<int>(range);
 
             // act
             var result = Enumerable.Range(0, count).Select(x => generator.Get());
+
+            // assert
+            Assert.AreEqual(count, result.Count());
+        }
+
+        [TestMethod]
+        public void Loop_must_expand_list_if_needed_for_get()
+        {
+            // arrange
+            var count = 4;
+            var range = Enumerable.Range(0, 2).ToArray();
+            var generator = new SequencialSource<int>(range);
+
+            // act
+            var result = generator.Get(count);
 
             // assert
             Assert.AreEqual(count, result.Count());
@@ -29,7 +44,7 @@ namespace SampleDataGenerator.Tests.Generators
         {
             int[] range = null;
 
-            var generator = new SequencialGenerator<int>(range);
+            var generator = new SequencialSource<int>(range);
         }
 
         [TestMethod]
@@ -38,7 +53,7 @@ namespace SampleDataGenerator.Tests.Generators
             // arrange
             var count = 4;
             var range = Enumerable.Empty<object>().ToArray();
-            var generator = new SequencialGenerator<object>(range);
+            var generator = new SequencialSource<object>(range);
 
             // act
             var result = Enumerable.Range(0, count).Select(x => generator.Get());
