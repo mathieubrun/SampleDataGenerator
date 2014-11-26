@@ -18,5 +18,12 @@ namespace SampleDataGenerator.Builders
 
             return this.Add(pgen);
         }
+
+        public IObjectGeneratorBuilder<TObj> PhoneNumber(string pattern)
+        {
+            var pgen = new StringGenerator(new PhoneNumberSource(pattern));
+
+            return this.Add(pgen);
+        }
     }
 }

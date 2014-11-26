@@ -61,6 +61,7 @@
     <Compile Include="Generators\StringGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Sources\PhoneNumberSource.cs" />
     <Compile Include="Sources\ISource.cs" />
     <Compile Include="Sources\RandomSource.cs" />
     <Compile Include="Sources\SequencialSource.cs" />
