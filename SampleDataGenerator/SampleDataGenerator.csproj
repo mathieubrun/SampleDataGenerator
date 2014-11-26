@@ -56,12 +56,14 @@
     <Compile Include="Generators\IObjectGenerator.cs" />
     <Compile Include="Generators\ObjectGeneratorGenerator.cs" />
     <Compile Include="Generators\FuncGenerator.cs" />
-    <Compile Include="Generators\RandomGenerator.cs" />
-    <Compile Include="Generators\SequencialGenerator.cs" />
     <Compile Include="Generators\IPropertyGenerator.cs" />
+    <Compile Include="Generators\SourceGenerator.cs" />
     <Compile Include="Generators\StringGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Sources\ISource.cs" />
+    <Compile Include="Sources\RandomSource.cs" />
+    <Compile Include="Sources\SequencialSource.cs" />
     <Compile Include="StaticData.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Generators\ObjectGenerator.cs" />
