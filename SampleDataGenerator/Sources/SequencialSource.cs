@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SampleDataGenerator.Generators
+namespace SampleDataGenerator.Sources
 {
-    public class SequencialGenerator<TProp> : IPropertyGenerator<TProp>
+    public class SequencialSource<TProp> : ISource<TProp>
     {
-        private readonly IEnumerable<TProp> source;
+        private readonly TProp[] source;
 
         private IEnumerator<TProp> enumerator;
 
-        public SequencialGenerator(params TProp[] source)
+        public SequencialSource(params TProp[] source)
         {
             if (source == null)
             {
@@ -29,7 +31,17 @@ namespace SampleDataGenerator.Generators
             return this.enumerator.Current;
         }
 
-        private IEnumerable<T> Loop<T>(IEnumerable<T> list)
+        public IEnumerable<TProp> Get(int count)
+        {
+            while (count-- > 0)
+            {
+                this.enumerator.MoveNext();
+
+                yield return this.enumerator.Current;
+            }
+        }
+
+        protected IEnumerable<T> Loop<T>(IEnumerable<T> list)
         {
             if (list == null)
             {
