@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\ArrayPropertyGeneratorBuilder.cs" />
+    <Compile Include="Builders\StringPropertyGeneratorBuilder.cs" />
+    <Compile Include="Builders\IStringPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\IArrayPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\IDatePropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\IObjectGeneratorBuilder.cs" />
@@ -57,6 +59,9 @@
     <Compile Include="Generators\RandomGenerator.cs" />
     <Compile Include="Generators\SequencialGenerator.cs" />
     <Compile Include="Generators\IPropertyGenerator.cs" />
+    <Compile Include="Generators\StringGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="StaticData.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Generators\ObjectGenerator.cs" />
@@ -74,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Data\LastNames.txt" />
     <EmbeddedResource Include="Data\FirstNames.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\LoremIpsum.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

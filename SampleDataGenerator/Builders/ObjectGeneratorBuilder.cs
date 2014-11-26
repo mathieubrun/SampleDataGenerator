@@ -30,6 +30,11 @@ namespace SampleDataGenerator.Builders
             return new DatePropertyGeneratorBuilder<TObj>(this, propertyExpression);
         }
 
+        public IStringPropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, string>> propertyExpression)
+        {
+            return new StringPropertyGeneratorBuilder<TObj>(this, propertyExpression);
+        }
+
         public TObj Generate()
         {
             return this.Generate(1).First();

@@ -13,6 +13,10 @@ namespace SampleDataGenerator.Tests
 
         public string LastName { get; set; }
 
+        public string Email { get; set; }
+
+        public string Description { get; set; }
+
         public IEnumerable<Person> Relatives { get; set; }
     }
 }
