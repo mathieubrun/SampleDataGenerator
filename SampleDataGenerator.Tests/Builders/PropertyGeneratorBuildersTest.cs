@@ -1,14 +1,14 @@
-﻿namespace SampleDataGenerator.Tests.Builders
-{
-    using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Moq;
-    using SampleDataGenerator.Builders;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using SampleDataGenerator.Builders;
+using SampleDataGenerator.Generators;
 
+namespace SampleDataGenerator.Tests.Builders
+{
     [TestClass]
     public class PropertyGeneratorBuildersTest
     {
-
         [TestMethod]
         public void PropertyGeneratorBuilder_Must_return_correct_builder()
         {

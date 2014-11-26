@@ -42,21 +42,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\ArrayPropertyGeneratorBuilder.cs" />
+    <Compile Include="Builders\IArrayPropertyGeneratorBuilder.cs" />
+    <Compile Include="Builders\IDatePropertyGeneratorBuilder.cs" />
+    <Compile Include="Builders\IObjectGeneratorBuilder.cs" />
+    <Compile Include="Builders\IPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\PropertyGeneratorBuilderBase.cs" />
     <Compile Include="Builders\DatePropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\ObjectGeneratorBuilder.cs" />
     <Compile Include="Builders\PropertyGeneratorBuilder.cs" />
     <Compile Include="Generators\DateGenerator.cs" />
-    <Compile Include="IObjectGenerator.cs" />
+    <Compile Include="Generators\IObjectGenerator.cs" />
     <Compile Include="Generators\ObjectGeneratorGenerator.cs" />
     <Compile Include="Generators\FuncGenerator.cs" />
     <Compile Include="Generators\RandomGenerator.cs" />
     <Compile Include="Generators\SequencialGenerator.cs" />
-    <Compile Include="IPropertyAssigner.cs" />
-    <Compile Include="IPropertyGenerator.cs" />
+    <Compile Include="Generators\IPropertyGenerator.cs" />
     <Compile Include="StaticData.cs" />
     <Compile Include="Generator.cs" />
-    <Compile Include="ObjectGenerator.cs" />
+    <Compile Include="Generators\ObjectGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

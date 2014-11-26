@@ -1,4 +1,4 @@
-﻿namespace SampleDataGenerator
+﻿namespace SampleDataGenerator.Generators
 {
     public interface IPropertyGenerator<TProperty>
     {

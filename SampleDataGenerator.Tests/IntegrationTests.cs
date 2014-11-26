@@ -1,10 +1,10 @@
-﻿namespace SampleDataGenerator.Tests
+﻿using System;
+using System.Linq;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace SampleDataGenerator.Tests
 {
-    using System;
-    using System.Linq;
-
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
     [TestClass]
     public class IntegrationTests
     {

@@ -1,10 +1,10 @@
-﻿namespace SampleDataGenerator.Builders
-{
-    using System;
-    using System.Linq.Expressions;
-    using SampleDataGenerator.Generators;
+﻿using System;
+using System.Linq.Expressions;
+using SampleDataGenerator.Generators;
 
-    public class DatePropertyGeneratorBuilder<TObj> : PropertyGeneratorBuilder<TObj, DateTime>
+namespace SampleDataGenerator.Builders
+{
+    public class DatePropertyGeneratorBuilder<TObj> : PropertyGeneratorBuilder<TObj, DateTime>, IDatePropertyGeneratorBuilder<TObj>
     {
         private readonly Random rnd = new Random();
 
@@ -13,11 +13,11 @@
         {
         }
 
-        public ObjectGeneratorBuilder<TObj> Range(DateTime start, DateTime end)
+        public IObjectGeneratorBuilder<TObj> Range(DateTime start, DateTime end)
         {
             var pgen = new DateGenerator(start, end);
 
             return this.Add(pgen);
-        }        
+        }
     }
 }
