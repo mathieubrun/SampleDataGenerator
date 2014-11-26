@@ -1,10 +1,10 @@
-﻿namespace SampleDataGenerator.Builders
-{
-    using System;
-    using System.Linq.Expressions;
-    using SampleDataGenerator.Generators;
+﻿using System;
+using System.Linq.Expressions;
+using SampleDataGenerator.Generators;
 
-    public class PropertyGeneratorBuilder<TObj, TProp> : PropertyGeneratorBuilderBase<TObj, TProp>, IPropertyGeneratorBuilder<TObj,TProp>
+namespace SampleDataGenerator.Builders
+{
+    public class PropertyGeneratorBuilder<TObj, TProp> : PropertyGeneratorBuilderBase<TObj, TProp>, IPropertyGeneratorBuilder<TObj, TProp>
     {
         public PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, TProp>> expr)
             : base(from, expr)

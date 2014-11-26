@@ -1,8 +1,8 @@
-﻿namespace SampleDataGenerator.Tests
-{
-    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
+namespace SampleDataGenerator.Tests
+{
     public class Person
     {
         public Guid Id { get; set; }

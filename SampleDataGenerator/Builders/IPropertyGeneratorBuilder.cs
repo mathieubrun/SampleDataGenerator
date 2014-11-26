@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
+using SampleDataGenerator.Generators;
+
 namespace SampleDataGenerator.Builders
 {
     public interface IPropertyGeneratorBuilder<TObj, TProp>

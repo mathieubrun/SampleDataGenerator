@@ -1,8 +1,8 @@
-﻿namespace SampleDataGenerator
-{
-    using System;
-    using System.IO;
+﻿using System;
+using System.IO;
 
+namespace SampleDataGenerator
+{
     public static class StaticData
     {
         private static Lazy<string[]> firstNames = new Lazy<string[]>(() => ReadData("FirstNames"));
@@ -64,7 +64,7 @@
             {
                 return countries.Value;
             }
-        }       
+        }
 
         private static string[] ReadData(string resourceName)
         {

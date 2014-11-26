@@ -1,8 +1,9 @@
-﻿namespace SampleDataGenerator.Builders
-{
-    using System;
-    using System.Linq.Expressions;
+﻿using System;
+using System.Linq.Expressions;
+using SampleDataGenerator.Generators;
 
+namespace SampleDataGenerator.Builders
+{
     public class PropertyGeneratorBuilderBase<TObj, TProp>
     {
         private readonly ObjectGeneratorBuilder<TObj> builder;

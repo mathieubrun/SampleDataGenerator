@@ -1,8 +1,8 @@
-﻿namespace SampleDataGenerator.Tests.Generators
-{
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using SampleDataGenerator.Generators;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SampleDataGenerator.Generators;
 
+namespace SampleDataGenerator.Tests.Generators
+{
     [TestClass]
     public class FuncGeneratorTest
     {

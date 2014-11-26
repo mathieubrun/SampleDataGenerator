@@ -1,10 +1,8 @@
-﻿namespace SampleDataGenerator.Tests.Builders
-{
-    using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Moq;
-    using SampleDataGenerator.Builders;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SampleDataGenerator.Builders;
 
+namespace SampleDataGenerator.Tests.Builders
+{
     [TestClass]
     public class ObjectGeneratorBuildersTest
     {

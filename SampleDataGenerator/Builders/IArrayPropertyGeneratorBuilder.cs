@@ -1,4 +1,4 @@
-﻿using System;
+﻿using SampleDataGenerator.Generators;
 
 namespace SampleDataGenerator.Builders
 {

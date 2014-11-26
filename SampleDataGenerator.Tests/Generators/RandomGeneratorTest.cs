@@ -1,10 +1,9 @@
-﻿namespace SampleDataGenerator.Tests.Generators
-{
-    using System;
-    using System.Linq;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using SampleDataGenerator.Generators;
+﻿using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SampleDataGenerator.Generators;
 
+namespace SampleDataGenerator.Tests.Generators
+{
     [TestClass]
     public class RandomGeneratorTest
     {

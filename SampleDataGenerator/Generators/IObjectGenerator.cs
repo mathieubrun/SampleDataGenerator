@@ -1,7 +1,7 @@
-﻿namespace SampleDataGenerator
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace SampleDataGenerator.Generators
+{
     public interface IObjectGenerator<TObj>
     {
         TObj Generate();

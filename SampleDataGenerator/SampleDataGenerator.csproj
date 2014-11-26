@@ -51,16 +51,15 @@
     <Compile Include="Builders\ObjectGeneratorBuilder.cs" />
     <Compile Include="Builders\PropertyGeneratorBuilder.cs" />
     <Compile Include="Generators\DateGenerator.cs" />
-    <Compile Include="IObjectGenerator.cs" />
+    <Compile Include="Generators\IObjectGenerator.cs" />
     <Compile Include="Generators\ObjectGeneratorGenerator.cs" />
     <Compile Include="Generators\FuncGenerator.cs" />
     <Compile Include="Generators\RandomGenerator.cs" />
     <Compile Include="Generators\SequencialGenerator.cs" />
-    <Compile Include="IPropertyAssigner.cs" />
-    <Compile Include="IPropertyGenerator.cs" />
+    <Compile Include="Generators\IPropertyGenerator.cs" />
     <Compile Include="StaticData.cs" />
     <Compile Include="Generator.cs" />
-    <Compile Include="ObjectGenerator.cs" />
+    <Compile Include="Generators\ObjectGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
-﻿namespace SampleDataGenerator
-{
-    using SampleDataGenerator.Builders;
+﻿using SampleDataGenerator.Builders;
 
+namespace SampleDataGenerator
+{
     /// <summary>
     /// Data generator entry point
     /// </summary>
@@ -12,7 +12,7 @@
         /// </summary>
         /// <typeparam name="TObj">Object type to generate</typeparam>
         /// <returns>An ObjectGenerator instance for requested type</returns>
-        public static ObjectGeneratorBuilder<TObj> For<TObj>()
+        public static IObjectGeneratorBuilder<TObj> For<TObj>()
         {
             return new ObjectGeneratorBuilder<TObj>();
         }
