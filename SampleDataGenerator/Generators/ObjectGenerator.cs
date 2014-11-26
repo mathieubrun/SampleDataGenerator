@@ -1,10 +1,10 @@
-﻿namespace SampleDataGenerator
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Linq.Expressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 
+namespace SampleDataGenerator.Generators
+{
     /// <summary>
     /// Object generator
     /// </summary>
@@ -52,6 +52,11 @@
             {
                 this.action(target, this.generator.Get());
             }
+        }
+
+        private interface IPropertyAssigner<TObject>
+        {
+            void SetValue(TObject target);
         }
     }
 }

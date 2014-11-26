@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace SampleDataGenerator.Builders
 {
     public interface IDatePropertyGeneratorBuilder<TObj> : IPropertyGeneratorBuilder<TObj, DateTime>

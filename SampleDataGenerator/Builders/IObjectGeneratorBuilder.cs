@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using SampleDataGenerator.Generators;
+
 namespace SampleDataGenerator.Builders
 {
-    public interface IObjectGeneratorBuilder<TObj>
+    public interface IObjectGeneratorBuilder<TObj> : IObjectGenerator<TObj>
     {
         IDatePropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, DateTime>> propertyExpression);
 

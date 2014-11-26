@@ -1,10 +1,11 @@
-﻿namespace SampleDataGenerator.Builders
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Linq.Expressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using SampleDataGenerator.Generators;
 
+namespace SampleDataGenerator.Builders
+{
     public class ObjectGeneratorBuilder<TObj> : IObjectGenerator<TObj>, IObjectGeneratorBuilder<TObj>
     {
         private ObjectGenerator<TObj> generator;
