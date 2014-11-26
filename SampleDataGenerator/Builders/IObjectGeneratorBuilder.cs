@@ -7,10 +7,13 @@ namespace SampleDataGenerator.Builders
 {
     public interface IObjectGeneratorBuilder<TObj> : IObjectGenerator<TObj>
     {
-        IDatePropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, DateTime>> propertyExpression);
-
         IArrayPropertyGeneratorBuilder<TObj, TProp> For<TProp>(Expression<Func<TObj, IEnumerable<TProp>>> propertyExpression);
 
+        IDatePropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, DateTime>> propertyExpression);
+
+        IStringPropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, string>> propertyExpression);
+
         IPropertyGeneratorBuilder<TObj, TProp> For<TProp>(Expression<Func<TObj, TProp>> propertyExpression);
+
     }
 }
