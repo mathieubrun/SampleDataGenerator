@@ -14,6 +14,5 @@ namespace SampleDataGenerator.Builders
         IStringPropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, string>> propertyExpression);
 
         IPropertyGeneratorBuilder<TObj, TProp> For<TProp>(Expression<Func<TObj, TProp>> propertyExpression);
-
     }
 }
