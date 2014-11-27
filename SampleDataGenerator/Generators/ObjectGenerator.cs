@@ -13,6 +13,11 @@ namespace SampleDataGenerator.Generators
     {
         private List<IPropertyAssigner<TObj>> assigners = new List<IPropertyAssigner<TObj>>();
 
+        private interface IPropertyAssigner<TObject>
+        {
+            void SetValue(TObject target);
+        }
+
         public TObj Generate()
         {
             var o = Activator.CreateInstance<TObj>();
@@ -52,11 +57,6 @@ namespace SampleDataGenerator.Generators
             {
                 this.action(target, this.generator.Get());
             }
-        }
-
-        private interface IPropertyAssigner<TObject>
-        {
-            void SetValue(TObject target);
-        }
+        }        
     }
 }
