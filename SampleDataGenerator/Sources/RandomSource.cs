@@ -12,11 +12,21 @@ namespace SampleDataGenerator.Sources
 
         public RandomSource(params TProp[] source)
         {
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
             this.source = source;
         }
 
         public TProp Get()
         {
+            if (!source.Any())
+            {
+                return default(TProp);
+            }
+
             return this.source[Rnd.Next(this.source.Length)];
         }
 

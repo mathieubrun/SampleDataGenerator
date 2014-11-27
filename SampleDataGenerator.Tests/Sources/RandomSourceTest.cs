@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SampleDataGenerator.Sources;
 
@@ -8,7 +9,7 @@ namespace SampleDataGenerator.Tests.Sources
     public class RandomSourceTest
     {
         [TestMethod]
-        public void Loop_must_expand_list_if_needed()
+        public void Get_must_return_one_element()
         {
             // arrange
             var count = 4;
@@ -23,7 +24,7 @@ namespace SampleDataGenerator.Tests.Sources
         }
 
         [TestMethod]
-        public void Loop_must_expand_list_if_needed_for_get()
+        public void Get_must_return_requested_number_of_elements()
         {
             // arrange
             var count = 4;
@@ -35,6 +36,44 @@ namespace SampleDataGenerator.Tests.Sources
 
             // assert
             Assert.AreEqual(count, result.Count());
+        }
+
+        [ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
+        public void Constructor_must_throw_ArgumentNullException_for_null_source()
+        {
+            int[] range = null;
+
+            var generator = new RandomSource<int>(range);
+        }
+
+        [TestMethod]
+        public void Get_must_return_null_if_source_is_empty()
+        {
+            // arrange
+            var range = Enumerable.Empty<object>().ToArray();
+            var generator = new RandomSource<object>(range);
+
+            // act
+            var result = generator.Get();
+
+            // assert
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void Get_must_return_null_array_of_correct_length_if_source_is_empty()
+        {
+            // arrange
+            var count = 4;
+            var range = Enumerable.Empty<object>().ToArray();
+            var generator = new RandomSource<object>(range);
+
+            // act
+            var result = generator.Get(count);
+
+            // assert
+            Assert.IsTrue(result.All(x => x == null));
         }
     }
 }
