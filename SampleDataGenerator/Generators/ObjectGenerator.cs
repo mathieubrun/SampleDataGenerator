@@ -9,28 +9,28 @@ namespace SampleDataGenerator.Generators
     /// Object generator
     /// </summary>
     /// <typeparam name="TObj">Object type</typeparam>
-    public class ObjectGenerator<TObj>
+    public class ObjectGenerator<TObj> : IObjectGenerator<TObj>
     {
         private List<IPropertyAssigner<TObj>> assigners = new List<IPropertyAssigner<TObj>>();
 
-        public IEnumerable<TObj> Generate(int count)
-        {
-            return Enumerable.Range(0, count)
-                .Select(x => this.Create());
-        }
-
-        internal void Add<TProp>(IPropertyGenerator<TProp> build, Expression<Func<TObj, TProp>> expr)
-        {
-            this.assigners.Add(new Assigner<TProp>(expr, build));
-        }
-
-        private TObj Create()
+        public TObj Generate()
         {
             var o = Activator.CreateInstance<TObj>();
 
             this.assigners.ForEach(x => x.SetValue(o));
 
             return o;
+        }
+
+        public IEnumerable<TObj> Generate(int count)
+        {
+            return Enumerable.Range(0, count)
+                .Select(x => this.Generate());
+        }
+
+        internal void Add<TProp>(IPropertyGenerator<TProp> build, Expression<Func<TObj, TProp>> expr)
+        {
+            this.assigners.Add(new Assigner<TProp>(expr, build));
         }
 
         private class Assigner<TProp> : IPropertyAssigner<TObj>
