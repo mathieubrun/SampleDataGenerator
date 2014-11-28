@@ -12,14 +12,12 @@ namespace SampleDataGenerator.Tests
         public void Create_simple_object()
         {
             // arrange
-            var count = 50;
-
             var firstNames = StaticData.FirstNames;
             var lastNames = StaticData.LastNames;
 
-            var personGenerator = Generator.For<TestObject>();
+            var generator = Generator.For<TestObject>();
 
-            personGenerator
+            generator
                 .For(x => x.DateTimeProperty)
                     .Range(DateTime.Now.AddYears(-20), DateTime.Now)
                 .For(x => x.StringProperty1)
@@ -34,17 +32,12 @@ namespace SampleDataGenerator.Tests
                     .CreateUsing(() => Guid.NewGuid());
 
             // act
-            var data = personGenerator.Generate(50).ToList();
+            var data = generator.Generate();
 
             // assert
-            foreach (var d in data)
-            {
-                Assert.IsTrue(firstNames.Contains(d.StringProperty1));
-                Assert.IsTrue(lastNames.Contains(d.StringProperty2));
-                Assert.IsFalse(d.GuidProperty == default(Guid));
-            }
-
-            Assert.AreEqual(count, data.Count);
+            Assert.IsTrue(firstNames.Contains(data.StringProperty1));
+            Assert.IsTrue(lastNames.Contains(data.StringProperty2));
+            Assert.IsFalse(data.GuidProperty == default(Guid));
         }
     }
 }
