@@ -18,5 +18,9 @@ namespace SampleDataGenerator.Tests
         public string StringProperty4 { get; set; }
 
         public IEnumerable<TestObject> NestedList { get; set; }
+
+        public Guid? NullableGuidProperty { get; set; }
+
+        public DateTime? NullableDateTimeProperty { get; set; }
     }
 }
