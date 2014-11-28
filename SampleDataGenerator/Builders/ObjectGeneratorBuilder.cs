@@ -37,7 +37,7 @@ namespace SampleDataGenerator.Builders
 
         public TObj Generate()
         {
-            return this.Generate();
+            return this.generator.Generate();
         }
 
         public IEnumerable<TObj> Generate(int count)
