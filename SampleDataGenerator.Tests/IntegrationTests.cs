@@ -17,20 +17,20 @@ namespace SampleDataGenerator.Tests
             var firstNames = StaticData.FirstNames;
             var lastNames = StaticData.LastNames;
 
-            var personGenerator = Generator.For<Person>();
+            var personGenerator = Generator.For<TestObject>();
 
             personGenerator
-                .For(x => x.DateOfBirth)
+                .For(x => x.DateTimeProperty)
                     .Range(DateTime.Now.AddYears(-20), DateTime.Now)
-                .For(x => x.FirstName)
+                .For(x => x.StringProperty1)
                     .ChooseFrom(StaticData.FirstNames)
-                .For(x => x.LastName)
+                .For(x => x.StringProperty2)
                     .ChooseFrom(StaticData.LastNames)
-                .For(x => x.Phone)
+                .For(x => x.StringProperty3)
                     .PhoneNumber(StaticData.PhoneNumbersPatterns.France)
-                .For(x => x.Description)
+                .For(x => x.StringProperty4)
                     .LoremIpsum(2)
-                .For(x => x.Id)
+                .For(x => x.GuidProperty)
                     .CreateUsing(() => Guid.NewGuid());
 
             // act
@@ -39,9 +39,9 @@ namespace SampleDataGenerator.Tests
             // assert
             foreach (var d in data)
             {
-                Assert.IsTrue(firstNames.Contains(d.FirstName));
-                Assert.IsTrue(lastNames.Contains(d.LastName));
-                Assert.IsFalse(d.Id == default(Guid));
+                Assert.IsTrue(firstNames.Contains(d.StringProperty1));
+                Assert.IsTrue(lastNames.Contains(d.StringProperty2));
+                Assert.IsFalse(d.GuidProperty == default(Guid));
             }
 
             Assert.AreEqual(count, data.Count);
