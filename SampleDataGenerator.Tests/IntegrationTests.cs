@@ -39,5 +39,28 @@ namespace SampleDataGenerator.Tests
             Assert.IsTrue(lastNames.Contains(data.StringProperty2));
             Assert.IsFalse(data.GuidProperty == default(Guid));
         }
+
+        [TestMethod]
+        public void Nullable_properties()
+        {
+            // arrange
+            var firstNames = StaticData.FirstNames;
+            var lastNames = StaticData.LastNames;
+
+            var generator = Generator.For<TestObject>();
+
+            generator
+                .For(x => x.NullableDateTimeProperty)
+                    .Range(DateTime.Now.AddYears(-20), DateTime.Now)
+                .For(x => x.NullableGuidProperty)
+                    .CreateUsing(() => Guid.NewGuid());
+
+            // act
+            var data = generator.Generate();
+
+            // assert
+            Assert.IsFalse(data.NullableGuidProperty == default(Guid?));
+            Assert.IsFalse(data.NullableDateTimeProperty == default(DateTime?));
+        }
     }
 }
