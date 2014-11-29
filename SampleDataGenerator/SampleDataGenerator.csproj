@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-	<StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\ArrayPropertyGeneratorBuilder.cs" />
+    <Compile Include="Builders\INullableDatePropertyGeneratorBuilder.cs" />
+    <Compile Include="Builders\NullableDatePropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\StringPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\IStringPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\IArrayPropertyGeneratorBuilder.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="Builders\DatePropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\ObjectGeneratorBuilder.cs" />
     <Compile Include="Builders\PropertyGeneratorBuilder.cs" />
+    <Compile Include="Generators\NullableDateGenerator.cs" />
     <Compile Include="Generators\DateGenerator.cs" />
     <Compile Include="Generators\IObjectGenerator.cs" />
     <Compile Include="Generators\ObjectGeneratorGenerator.cs" />
