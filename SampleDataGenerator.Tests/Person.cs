@@ -3,22 +3,24 @@ using System.Collections.Generic;
 
 namespace SampleDataGenerator.Tests
 {
-    public class Person
+    public class TestObject
     {
-        public Guid Id { get; set; }
+        public Guid GuidProperty { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateTime DateTimeProperty { get; set; }
 
-        public string FirstName { get; set; }
+        public string StringProperty1 { get; set; }
 
-        public string LastName { get; set; }
+        public string StringProperty2 { get; set; }
 
-        public string Email { get; set; }
+        public string StringProperty3 { get; set; }
 
-        public string Phone { get; set; }
+        public string StringProperty4 { get; set; }
 
-        public string Description { get; set; }
+        public IEnumerable<TestObject> NestedList { get; set; }
 
-        public IEnumerable<Person> Relatives { get; set; }
+        public Guid? NullableGuidProperty { get; set; }
+
+        public DateTime? NullableDateTimeProperty { get; set; }
     }
 }
