@@ -13,9 +13,9 @@ namespace SampleDataGenerator.Tests.Builders
         public void PropertyGeneratorBuilder_Must_return_correct_builder()
         {
             // arrange
-            var objectBuilder = new ObjectGeneratorBuilder<Person>();
+            var objectBuilder = new ObjectGeneratorBuilder<TestObject>();
 
-            var sut = new PropertyGeneratorBuilder<Person, string>(objectBuilder, x => x.FirstName);
+            var sut = new PropertyGeneratorBuilder<TestObject, string>(objectBuilder, x => x.StringProperty1);
 
             // act
             var builder1 = sut.ChooseFrom("");
@@ -34,9 +34,9 @@ namespace SampleDataGenerator.Tests.Builders
         public void DatePropertyGeneratorBuilder_Must_return_correct_builder()
         {
             // arrange
-            var objectBuilder = new ObjectGeneratorBuilder<Person>();
+            var objectBuilder = new ObjectGeneratorBuilder<TestObject>();
 
-            var sut = new DatePropertyGeneratorBuilder<Person>(objectBuilder, x => x.DateOfBirth);
+            var sut = new DatePropertyGeneratorBuilder<TestObject>(objectBuilder, x => x.DateTimeProperty);
 
             // act
             var builder = sut.Range(DateTime.Now, DateTime.Now);
@@ -49,12 +49,12 @@ namespace SampleDataGenerator.Tests.Builders
         public void ArrayPropertyGeneratorBuilder_Must_return_correct_builder()
         {
             // arrange
-            var objectBuilder = new ObjectGeneratorBuilder<Person>();
+            var objectBuilder = new ObjectGeneratorBuilder<TestObject>();
 
-            var sut = new ArrayPropertyGeneratorBuilder<Person, Person>(objectBuilder, x => x.Relatives);
+            var sut = new ArrayPropertyGeneratorBuilder<TestObject, TestObject>(objectBuilder, x => x.NestedList);
 
             // act
-            var builder = sut.CreateUsing(Mock.Of<IObjectGenerator<Person>>(), 1);
+            var builder = sut.CreateUsing(Mock.Of<IObjectGenerator<TestObject>>(), 1);
 
             // assert
             Assert.AreSame(builder, objectBuilder);

@@ -25,6 +25,11 @@ namespace SampleDataGenerator.Builders
             return new ArrayPropertyGeneratorBuilder<TObj, TProp>(this, propertyExpression);
         }
 
+        public INullableDatePropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, DateTime?>> propertyExpression)
+        {
+            return new NullableDatePropertyGeneratorBuilder<TObj>(this, propertyExpression);
+        }
+
         public IDatePropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, DateTime>> propertyExpression)
         {
             return new DatePropertyGeneratorBuilder<TObj>(this, propertyExpression);
@@ -37,7 +42,7 @@ namespace SampleDataGenerator.Builders
 
         public TObj Generate()
         {
-            return this.Generate();
+            return this.generator.Generate();
         }
 
         public IEnumerable<TObj> Generate(int count)
