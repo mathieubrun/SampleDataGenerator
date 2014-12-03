@@ -16,7 +16,7 @@ namespace SampleDataGenerator
         private static Lazy<string[]> loremIpsum = new Lazy<string[]>(() => ReadData("LoremIpsum"));
 
         /// <summary>
-        /// First names
+        /// Gets first names
         /// </summary>
         /// <remarks>
         /// From : https://github.com/hadley/data-baby-names/blob/master/baby-names.csv
@@ -29,6 +29,9 @@ namespace SampleDataGenerator
             }
         }
 
+        /// <summary>
+        /// Gets last names
+        /// </summary>
         /// <remarks>
         /// From http://names.mongabay.com/most_common_surnames.htm
         /// </remarks>
@@ -41,7 +44,7 @@ namespace SampleDataGenerator
         }
 
         /// <summary>
-        /// Company names
+        /// Gets company names
         /// </summary>
         /// <remarks>
         /// From http://brendoman.com/media/users/dan/finctional_companies.txt
@@ -55,7 +58,7 @@ namespace SampleDataGenerator
         }
 
         /// <summary>
-        /// Countries
+        /// Gets countries
         /// </summary>
         /// <remarks>
         /// From http://www.state.gov/misc/list/
@@ -69,7 +72,7 @@ namespace SampleDataGenerator
         }
 
         /// <summary>
-        /// Countries
+        /// Gets lorem ipsum lines
         /// </summary>
         /// <remarks>
         /// From http://en.wikipedia.org/wiki/Lorem_ipsum#Latin_source
@@ -91,6 +94,11 @@ namespace SampleDataGenerator
                     return rdr.ReadToEnd().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 }
             }
+        }
+
+        public class PhoneNumbersPatterns
+        {
+            public const string France = "+33X XX XX XX XX";
         }
     }
 }
