@@ -15,7 +15,7 @@ namespace SampleDataGenerator.Sources
             this.pattern = pattern;
         }
 
-        public string Get()
+        public string Generate()
         {
             var result = new StringBuilder();
 
@@ -35,11 +35,11 @@ namespace SampleDataGenerator.Sources
             return result.ToString();
         }
 
-        public IEnumerable<string> Get(int count)
+        public IEnumerable<string> Generate(int count)
         {
             while (count-- > 0)
             {
-                yield return Get();
+                yield return Generate();
             }
         }
     }

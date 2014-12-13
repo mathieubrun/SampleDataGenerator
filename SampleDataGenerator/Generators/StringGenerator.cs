@@ -28,10 +28,10 @@ namespace SampleDataGenerator.Generators
         {
             if (count == 0)
             {
-                return source.Get();
+                return source.Generate();
             }
             
-            return string.Join(separator, this.source.Get(count).ToArray());
+            return string.Join(separator, this.source.Generate(count).ToArray());
         }
     }
 }

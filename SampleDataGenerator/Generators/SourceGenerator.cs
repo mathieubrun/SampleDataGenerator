@@ -21,7 +21,7 @@ namespace SampleDataGenerator.Generators
 
         public TProp Get()
         {
-            return this.source.Get();
+            return this.source.Generate();
         }
     }
 }
