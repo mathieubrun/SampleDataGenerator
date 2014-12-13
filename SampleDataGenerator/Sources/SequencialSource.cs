@@ -24,14 +24,14 @@ namespace SampleDataGenerator.Sources
             this.enumerator = this.Loop(source).GetEnumerator();
         }
 
-        public TProp Get()
+        public TProp Generate()
         {
             this.enumerator.MoveNext();
 
             return this.enumerator.Current;
         }
 
-        public IEnumerable<TProp> Get(int count)
+        public IEnumerable<TProp> Generate(int count)
         {
             while (count-- > 0)
             {

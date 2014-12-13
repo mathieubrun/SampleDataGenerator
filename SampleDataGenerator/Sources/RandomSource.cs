@@ -20,7 +20,7 @@ namespace SampleDataGenerator.Sources
             this.source = source;
         }
 
-        public TProp Get()
+        public TProp Generate()
         {
             if (!source.Any())
             {
@@ -30,7 +30,7 @@ namespace SampleDataGenerator.Sources
             return this.source[Rnd.Next(this.source.Length)];
         }
 
-        public IEnumerable<TProp> Get(int count)
+        public IEnumerable<TProp> Generate(int count)
         {
             // TODO : optimize
             return this.Loop().Take(count);

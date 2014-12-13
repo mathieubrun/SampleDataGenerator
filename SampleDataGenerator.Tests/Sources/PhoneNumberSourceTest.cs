@@ -15,7 +15,7 @@ namespace SampleDataGenerator.Tests.Sources
             var generator = new PhoneNumberSource("33-000-000");
 
             // act
-            var result = generator.Get(count);
+            var result = generator.Generate(count);
 
             // assert
             Assert.AreEqual(count, result.Count());

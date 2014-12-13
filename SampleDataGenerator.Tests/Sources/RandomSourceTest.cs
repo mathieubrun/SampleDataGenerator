@@ -17,7 +17,7 @@ namespace SampleDataGenerator.Tests.Sources
             var generator = new RandomSource<int>(range);
 
             // act
-            var result = Enumerable.Range(0, count).Select(x => generator.Get());
+            var result = Enumerable.Range(0, count).Select(x => generator.Generate());
 
             // assert
             Assert.AreEqual(count, result.Count());
@@ -32,7 +32,7 @@ namespace SampleDataGenerator.Tests.Sources
             var generator = new RandomSource<int>(range);
 
             // act
-            var result = generator.Get(count);
+            var result = generator.Generate(count);
 
             // assert
             Assert.AreEqual(count, result.Count());
@@ -55,7 +55,7 @@ namespace SampleDataGenerator.Tests.Sources
             var generator = new RandomSource<object>(range);
 
             // act
-            var result = generator.Get();
+            var result = generator.Generate();
 
             // assert
             Assert.IsNull(result);
@@ -70,7 +70,7 @@ namespace SampleDataGenerator.Tests.Sources
             var generator = new RandomSource<object>(range);
 
             // act
-            var result = generator.Get(count);
+            var result = generator.Generate(count);
 
             // assert
             Assert.IsTrue(result.All(x => x == null));
