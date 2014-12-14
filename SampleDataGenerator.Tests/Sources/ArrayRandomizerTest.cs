@@ -6,7 +6,7 @@ using SampleDataGenerator.Sources;
 namespace SampleDataGenerator.Tests.Sources
 {
     [TestClass]
-    public class RandomSourceTest
+    public class ArrayRandomizerTest
     {
         [TestMethod]
         public void Get_must_return_one_element()
@@ -14,7 +14,7 @@ namespace SampleDataGenerator.Tests.Sources
             // arrange
             var count = 4;
             var range = Enumerable.Range(0, 2).ToArray();
-            var generator = new RandomSource<int>(range);
+            var generator = new ArrayRandomizer<int>(range);
 
             // act
             var result = Enumerable.Range(0, count).Select(x => generator.Generate());
@@ -29,7 +29,7 @@ namespace SampleDataGenerator.Tests.Sources
             // arrange
             var count = 4;
             var range = Enumerable.Range(0, 2).ToArray();
-            var generator = new RandomSource<int>(range);
+            var generator = new ArrayRandomizer<int>(range);
 
             // act
             var result = generator.Generate(count);
@@ -44,7 +44,7 @@ namespace SampleDataGenerator.Tests.Sources
         {
             int[] range = null;
 
-            var generator = new RandomSource<int>(range);
+            var generator = new ArrayRandomizer<int>(range);
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace SampleDataGenerator.Tests.Sources
         {
             // arrange
             var range = Enumerable.Empty<object>().ToArray();
-            var generator = new RandomSource<object>(range);
+            var generator = new ArrayRandomizer<object>(range);
 
             // act
             var result = generator.Generate();
@@ -67,7 +67,7 @@ namespace SampleDataGenerator.Tests.Sources
             // arrange
             var count = 4;
             var range = Enumerable.Empty<object>().ToArray();
-            var generator = new RandomSource<object>(range);
+            var generator = new ArrayRandomizer<object>(range);
 
             // act
             var result = generator.Generate(count);

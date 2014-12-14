@@ -11,7 +11,7 @@ namespace SampleDataGenerator.Generators
         private readonly int count;
         private readonly string separator;
 
-        public JoinedStringGenerator(ISource<string> source, int count, string separator)
+        public JoinedStringGenerator(IElementGenerator<string> source, int count, string separator)
             : base(source)
         {
             this.count = count;

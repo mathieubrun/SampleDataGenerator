@@ -7,9 +7,9 @@ namespace SampleDataGenerator.Generators
 {
     public class SourceGenerator<TProp> : IPropertyGenerator<TProp>
     {
-        private readonly ISource<TProp> source;
+        private readonly IElementGenerator<TProp> source;
 
-        public SourceGenerator(ISource<TProp> source)
+        public SourceGenerator(IElementGenerator<TProp> source)
         {
             if (source == null)
             {
@@ -19,7 +19,7 @@ namespace SampleDataGenerator.Generators
             this.source = source;
         }
 
-        protected ISource<TProp> Source
+        protected IElementGenerator<TProp> Source
         {
             get
             {
