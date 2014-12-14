@@ -56,19 +56,19 @@
     <Compile Include="Builders\ObjectGeneratorBuilder.cs" />
     <Compile Include="Builders\PropertyGeneratorBuilder.cs" />
     <Compile Include="Generators\NullableDateGenerator.cs" />
-    <Compile Include="Generators\DateGenerator.cs" />
     <Compile Include="Generators\IObjectGenerator.cs" />
     <Compile Include="Generators\ObjectGeneratorGenerator.cs" />
     <Compile Include="Generators\FuncGenerator.cs" />
     <Compile Include="Generators\IPropertyGenerator.cs" />
     <Compile Include="Generators\SourceGenerator.cs" />
-    <Compile Include="Generators\StringGenerator.cs">
+    <Compile Include="Generators\JoinedStringGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Sources\PhoneNumberSource.cs" />
-    <Compile Include="Sources\ISource.cs" />
-    <Compile Include="Sources\RandomSource.cs" />
-    <Compile Include="Sources\SequencialSource.cs" />
+    <Compile Include="Sources\DateGenerator.cs" />
+    <Compile Include="Sources\IElementGenerator.cs" />
+    <Compile Include="Sources\PhoneNumberGenerator.cs" />
+    <Compile Include="Sources\ArrayRandomizer.cs" />
+    <Compile Include="Sources\ArraySequencer.cs" />
     <Compile Include="StaticData.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Generators\ObjectGenerator.cs" />
