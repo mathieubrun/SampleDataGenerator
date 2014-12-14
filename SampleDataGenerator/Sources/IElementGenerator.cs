@@ -10,7 +10,7 @@ namespace SampleDataGenerator.Sources
     /// Exposes a data generator for a given data type
     /// </summary>
     /// <typeparam name="TProp">Source data type</typeparam>
-    public interface ISource<TProp>
+    public interface IElementGenerator<TProp>
     {
         /// <summary>
         /// Generates one element

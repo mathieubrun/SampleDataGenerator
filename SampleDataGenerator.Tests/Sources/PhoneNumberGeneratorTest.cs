@@ -5,7 +5,7 @@ using SampleDataGenerator.Sources;
 namespace SampleDataGenerator.Tests.Sources
 {
     [TestClass]
-    public class PhoneNumberSourceTest
+    public class PhoneNumberGeneratorTest
     {
         [TestMethod]
         public void Loop_must_expand_list_if_needed()
