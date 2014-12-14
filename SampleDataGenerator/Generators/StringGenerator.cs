@@ -6,32 +6,21 @@ using SampleDataGenerator.Sources;
 
 namespace SampleDataGenerator.Generators
 {
-    public class StringGenerator : IPropertyGenerator<string>
+    public class JoinedStringGenerator : SourceGenerator<string>
     {
-        private readonly ISource<string> source;
         private readonly int count;
         private readonly string separator;
 
-        public StringGenerator(ISource<string> source)
-        {
-            this.source = source;
-        }
-
-        public StringGenerator(ISource<string> source, int count, string separator)
-            : this(source)
+        public JoinedStringGenerator(ISource<string> source, int count, string separator)
+            : base(source)
         {
             this.count = count;
             this.separator = separator;
         }
 
-        public string Get()
+        public override string Get()
         {
-            if (count == 0)
-            {
-                return source.Generate();
-            }
-            
-            return string.Join(separator, this.source.Generate(count).ToArray());
+            return string.Join(separator, this.Source.Generate(count).ToArray());
         }
     }
 }
