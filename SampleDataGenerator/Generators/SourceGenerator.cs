@@ -19,7 +19,15 @@ namespace SampleDataGenerator.Generators
             this.source = source;
         }
 
-        public TProp Get()
+        protected ISource<TProp> Source
+        {
+            get
+            {
+                return source;
+            }
+        }
+
+        public virtual TProp Get()
         {
             return this.source.Generate();
         }
