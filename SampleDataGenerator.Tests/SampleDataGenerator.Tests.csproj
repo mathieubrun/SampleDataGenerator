@@ -66,8 +66,8 @@
     <Compile Include="Generators\ObjectGeneratorGeneratorTest.cs" />
     <Compile Include="Generators\FuncGeneratorTest.cs" />
     <Compile Include="Sources\PhoneNumberSourceTest.cs" />
-    <Compile Include="Sources\RandomSourceTest.cs" />
-    <Compile Include="Sources\SequencialSourceTest.cs" />
+    <Compile Include="Sources\ArrayRandomizerTest.cs" />
+    <Compile Include="Sources\ArraySequencerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SampleDataGenerator\SampleDataGenerator.csproj">

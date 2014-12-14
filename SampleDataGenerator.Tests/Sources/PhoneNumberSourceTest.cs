@@ -12,7 +12,7 @@ namespace SampleDataGenerator.Tests.Sources
         {
             // arrange
             var count = 4;
-            var generator = new PhoneNumberSource("33-000-000");
+            var generator = new PhoneNumberGenerator("33-000-000");
 
             // act
             var result = generator.Generate(count);

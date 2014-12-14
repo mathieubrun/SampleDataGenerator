@@ -5,12 +5,12 @@ using System.Text;
 
 namespace SampleDataGenerator.Sources
 {
-    public class PhoneNumberSource : ISource<string>
+    public class PhoneNumberGenerator : IElementGenerator<string>
     {
         private readonly string pattern;
         private readonly Random rnd = new Random();
 
-        public PhoneNumberSource(string pattern)
+        public PhoneNumberGenerator(string pattern)
         {
             this.pattern = pattern;
         }

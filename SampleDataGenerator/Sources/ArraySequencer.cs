@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SampleDataGenerator.Sources
 {
-    public class SequencialSource<TProp> : ISource<TProp>
+    public class ArraySequencer<TProp> : IElementGenerator<TProp>
     {
         private readonly TProp[] source;
 
         private IEnumerator<TProp> enumerator;
 
-        public SequencialSource(params TProp[] source)
+        public ArraySequencer(params TProp[] source)
         {
             if (source == null)
             {

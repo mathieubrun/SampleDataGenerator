@@ -14,14 +14,14 @@ namespace SampleDataGenerator.Builders
 
         public IObjectGeneratorBuilder<TObj> ChooseFrom(params TProp[] list)
         {
-            var pgen = new SourceGenerator<TProp>(new SequencialSource<TProp>(list));
+            var pgen = new SourceGenerator<TProp>(new ArraySequencer<TProp>(list));
 
             return this.Add(pgen);
         }
 
         public IObjectGeneratorBuilder<TObj> ChooseRandomlyFrom(params TProp[] list)
         {
-            var pgen = new SourceGenerator<TProp>(new RandomSource<TProp>(list));
+            var pgen = new SourceGenerator<TProp>(new ArrayRandomizer<TProp>(list));
 
             return this.Add(pgen);
         }
