@@ -18,7 +18,7 @@ namespace SampleDataGenerator.Tests.Generators
             var generator = new ObjectGeneratorGenerator<object>(mock);
 
             // act
-            var generated = generator.Get();
+            var generated = generator.Generate();
 
             // assert
             Assert.AreSame(expected, generated);

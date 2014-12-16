@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using SampleDataGenerator.Generators;
+using SampleDataGenerator.Sources;
 
 namespace SampleDataGenerator.Builders
 {
@@ -50,7 +51,7 @@ namespace SampleDataGenerator.Builders
             return this.generator.Generate(count);
         }
 
-        internal ObjectGeneratorBuilder<TObj> Add<TProp>(IPropertyGenerator<TProp> build, Expression<Func<TObj, TProp>> propertyExpression)
+        internal ObjectGeneratorBuilder<TObj> Add<TProp>(IElementGenerator<TProp> build, Expression<Func<TObj, TProp>> propertyExpression)
         {
             this.generator.Add(build, propertyExpression);
 

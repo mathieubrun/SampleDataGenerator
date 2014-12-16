@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SampleDataGenerator.Sources
 {
-    public class ArraySequencer<TProp> : IElementGenerator<TProp>
+    public class ArraySequencer<TProp> : IElementEnumerableGenerator<TProp>
     {
         private readonly TProp[] source;
 
@@ -22,13 +22,6 @@ namespace SampleDataGenerator.Sources
             this.source = source;
 
             this.enumerator = this.Loop(source).GetEnumerator();
-        }
-
-        public TProp Generate()
-        {
-            this.enumerator.MoveNext();
-
-            return this.enumerator.Current;
         }
 
         public IEnumerable<TProp> Generate(int count)

@@ -17,7 +17,7 @@ namespace SampleDataGenerator.Tests.Sources
             var generator = new ArraySequencer<int>(range);
 
             // act
-            var result = Enumerable.Range(0, count).Select(x => generator.Generate());
+            var result = Enumerable.Range(0, count).Select(x => generator.Generate(1).First());
 
             // assert
             Assert.AreEqual(count, result.Count());
@@ -55,7 +55,7 @@ namespace SampleDataGenerator.Tests.Sources
             var generator = new ArraySequencer<object>(range);
 
             // act
-            var result = generator.Generate();
+            var result = generator.Generate(1).FirstOrDefault();
 
             // assert
             Assert.IsNull(result);

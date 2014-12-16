@@ -16,7 +16,9 @@ namespace SampleDataGenerator.Builders
 
         public IObjectGeneratorBuilder<TObj> Range(DateTime start, DateTime end)
         {
-            var pgen = new SourceGenerator<DateTime?>(new DateGenerator(start, end));
+            var gen = new DateGenerator(start, end);
+
+            var pgen = new FuncGenerator<DateTime?>(() => gen.Generate());
 
             return this.Add(pgen);
         }
