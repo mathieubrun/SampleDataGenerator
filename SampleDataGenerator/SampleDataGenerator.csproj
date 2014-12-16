@@ -43,8 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\ArrayPropertyGeneratorBuilder.cs" />
-    <Compile Include="Builders\INullableDatePropertyGeneratorBuilder.cs" />
-    <Compile Include="Builders\NullableDatePropertyGeneratorBuilder.cs" />
+    <Compile Include="Builders\INullableDatePropertyGeneratorBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Builders\NullableDatePropertyGeneratorBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Builders\StringPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\IStringPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\IArrayPropertyGeneratorBuilder.cs" />
@@ -53,18 +57,19 @@
     <Compile Include="Builders\IPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\PropertyGeneratorBuilderBase.cs" />
     <Compile Include="Builders\DatePropertyGeneratorBuilder.cs" />
-    <Compile Include="Builders\ObjectGeneratorBuilder.cs" />
+    <Compile Include="Builders\ObjectGeneratorBuilder.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Builders\PropertyGeneratorBuilder.cs" />
     <Compile Include="Generators\IObjectGenerator.cs" />
     <Compile Include="Generators\ObjectGeneratorGenerator.cs" />
     <Compile Include="Generators\FuncGenerator.cs" />
-    <Compile Include="Generators\IPropertyGenerator.cs" />
-    <Compile Include="Generators\SourceGenerator.cs" />
-    <Compile Include="Generators\JoinedStringGenerator.cs">
+    <Compile Include="Sources\DateGenerator.cs" />
+    <Compile Include="Sources\IElementEnumerableGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Sources\DateGenerator.cs" />
     <Compile Include="Sources\IElementGenerator.cs" />
+    <Compile Include="Sources\JoinedStringSource.cs" />
     <Compile Include="Sources\PhoneNumberGenerator.cs" />
     <Compile Include="Sources\ArrayRandomizer.cs" />
     <Compile Include="Sources\ArraySequencer.cs" />

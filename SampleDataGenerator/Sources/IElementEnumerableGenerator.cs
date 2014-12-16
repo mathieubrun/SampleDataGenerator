@@ -10,12 +10,13 @@ namespace SampleDataGenerator.Sources
     /// Exposes a data generator for a given data type
     /// </summary>
     /// <typeparam name="TProp">Source data type</typeparam>
-    public interface IElementGenerator<out TProp>
+    public interface IElementEnumerableGenerator<out TProp>
     {
         /// <summary>
-        /// Generates one element
+        /// Generates a specific amount of elements
         /// </summary>
-        /// <returns>One element of given data type</returns>
-        TProp Generate();
+        /// <param name="count">Number of elements to generate</param>
+        /// <returns>IEnumerable of data type</returns>
+        IEnumerable<TProp> Generate(int count);
     }
 }

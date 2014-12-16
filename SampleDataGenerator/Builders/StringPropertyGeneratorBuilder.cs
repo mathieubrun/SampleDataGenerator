@@ -14,14 +14,16 @@ namespace SampleDataGenerator.Builders
 
         public IObjectGeneratorBuilder<TObj> LoremIpsum(int sentences)
         {
-            var pgen = new JoinedStringGenerator(new ArrayRandomizer<string>(StaticData.LoremIpsum), sentences, " ");
+            var pgen = new JoinedStringSource(new ArrayRandomizer<string>(StaticData.LoremIpsum), sentences, " ");
 
             return this.Add(pgen);
         }
 
         public IObjectGeneratorBuilder<TObj> PhoneNumber(string pattern)
         {
-            var pgen = new SourceGenerator<string>(new PhoneNumberGenerator(pattern));
+            var gen = new PhoneNumberGenerator(pattern);
+
+            var pgen = new FuncGenerator<string>(() => gen.Generate());
 
             return this.Add(pgen);
         }

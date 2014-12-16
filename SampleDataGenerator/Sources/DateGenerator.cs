@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SampleDataGenerator.Sources
 {
-    public class DateGenerator : IElementGenerator<DateTime?>, IElementGenerator<DateTime>
+    public class DateGenerator : IElementGenerator<DateTime>
     {
         private readonly Random rnd = new Random();
         private readonly DateTime startDate;
@@ -26,19 +26,6 @@ namespace SampleDataGenerator.Sources
         }
 
         public IEnumerable<DateTime> Generate(int count)
-        {
-            while (count-- > 0)
-            {
-                yield return Generate();
-            }
-        }
-
-        DateTime? IElementGenerator<DateTime?>.Generate()
-        {
-            return Generate();
-        }
-
-        IEnumerable<DateTime?> IElementGenerator<DateTime?>.Generate(int count)
         {
             while (count-- > 0)
             {

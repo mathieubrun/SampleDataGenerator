@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SampleDataGenerator.Sources
 {
-    public class ArrayRandomizer<TProp> : IElementGenerator<TProp>
+    public class ArrayRandomizer<TProp> : IElementEnumerableGenerator<TProp>
     {
         private static readonly Random Rnd = new Random();
 
@@ -18,16 +18,6 @@ namespace SampleDataGenerator.Sources
             }
 
             this.source = source;
-        }
-
-        public TProp Generate()
-        {
-            if (!source.Any())
-            {
-                return default(TProp);
-            }
-
-            return this.source[Rnd.Next(this.source.Length)];
         }
 
         public IEnumerable<TProp> Generate(int count)
