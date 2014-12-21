@@ -8,8 +8,6 @@ namespace SampleDataGenerator.Sources
 {
     public class ArraySequencer<TProp> : IElementEnumerableGenerator<TProp>
     {
-        private readonly TProp[] source;
-
         private IEnumerator<TProp> enumerator;
 
         public ArraySequencer(params TProp[] source)
@@ -18,8 +16,6 @@ namespace SampleDataGenerator.Sources
             {
                 throw new ArgumentNullException("source");
             }
-
-            this.source = source;
 
             this.enumerator = this.Loop(source).GetEnumerator();
         }
