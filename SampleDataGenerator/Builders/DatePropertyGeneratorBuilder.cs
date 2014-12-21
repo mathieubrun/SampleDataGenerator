@@ -8,8 +8,6 @@ namespace SampleDataGenerator.Builders
 {
     public class DatePropertyGeneratorBuilder<TObj> : PropertyGeneratorBuilder<TObj, DateTime>, IDatePropertyGeneratorBuilder<TObj>
     {
-        private readonly Random rnd = new Random();
-
         public DatePropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, DateTime>> expr)
             : base(from, expr)
         {
