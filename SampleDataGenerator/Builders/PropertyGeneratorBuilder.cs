@@ -8,6 +8,11 @@ namespace SampleDataGenerator.Builders
 {
     public class PropertyGeneratorBuilder<TObj, TProp> : PropertyGeneratorBuilderBase<TObj, TProp>, IPropertyGeneratorBuilder<TObj, TProp>
     {
+        public PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from)
+            : base(from)
+        {
+        }
+
         public PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, TProp>> expr)
             : base(from, expr)
         {
