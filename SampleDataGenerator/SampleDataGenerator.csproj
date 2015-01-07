@@ -46,12 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\ArrayPropertyGeneratorBuilder.cs" />
-    <Compile Include="Builders\INullableDatePropertyGeneratorBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Builders\NullableDatePropertyGeneratorBuilder.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Builders\StringPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\IStringPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\IArrayPropertyGeneratorBuilder.cs" />
