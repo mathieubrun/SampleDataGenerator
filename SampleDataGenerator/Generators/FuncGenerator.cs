@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
+using SampleDataGenerator.Sources;
 
 namespace SampleDataGenerator.Generators
 {
-    public class FuncGenerator<TProp> : IPropertyGenerator<TProp>
+    public class FuncGenerator<TProp> : IElementGenerator<TProp>
     {
         private readonly Func<TProp> func;
 
@@ -12,7 +13,7 @@ namespace SampleDataGenerator.Generators
             this.func = expr.Compile();
         }
 
-        public TProp Get()
+        public TProp Generate()
         {
             return this.func();
         }

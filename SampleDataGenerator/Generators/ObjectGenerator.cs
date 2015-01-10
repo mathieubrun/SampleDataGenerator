@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using SampleDataGenerator.Sources;
 
 namespace SampleDataGenerator.Generators
 {
@@ -33,7 +34,7 @@ namespace SampleDataGenerator.Generators
                 .Select(x => this.Generate());
         }
 
-        internal void Add<TProp>(IPropertyGenerator<TProp> build, Expression<Func<TObj, TProp>> expr)
+        internal void Add<TProp>(IElementGenerator<TProp> build, Expression<Action<TObj, TProp>> expr)
         {
             this.assigners.Add(new Assigner<TProp>(expr, build));
         }
@@ -41,21 +42,17 @@ namespace SampleDataGenerator.Generators
         private class Assigner<TProp> : IPropertyAssigner<TObj>
         {
             private readonly Action<TObj, TProp> action;
-            private readonly IPropertyGenerator<TProp> generator;
+            private readonly IElementGenerator<TProp> generator;
 
-            public Assigner(Expression<Func<TObj, TProp>> expr, IPropertyGenerator<TProp> generator)
+            public Assigner(Expression<Action<TObj, TProp>> expr, IElementGenerator<TProp> generator)
             {
-                var member = expr.Body;
-                var param = Expression.Parameter(typeof(TProp), "value");
-                var set = Expression.Lambda<Action<TObj, TProp>>(Expression.Assign(member, param), expr.Parameters[0], param);
-
-                this.action = set.Compile();
+                this.action = expr.Compile();
                 this.generator = generator;
             }
 
             public void SetValue(TObj target)
             {
-                this.action(target, this.generator.Get());
+                this.action(target, this.generator.Generate());
             }
         }        
     }

@@ -14,7 +14,7 @@ namespace SampleDataGenerator.Tests.Generators
             var generator = new FuncGenerator<object>(() => expected);
 
             // act
-            var generated = generator.Get();
+            var generated = generator.Generate();
 
             // assert
             Assert.AreSame(expected, generated);

@@ -5,17 +5,17 @@ using System.Text;
 
 namespace SampleDataGenerator.Sources
 {
-    public class PhoneNumberSource : ISource<string>
+    public class PhoneNumberGenerator : IElementGenerator<string>
     {
         private readonly string pattern;
         private readonly Random rnd = new Random();
 
-        public PhoneNumberSource(string pattern)
+        public PhoneNumberGenerator(string pattern)
         {
             this.pattern = pattern;
         }
 
-        public string Get()
+        public string Generate()
         {
             var result = new StringBuilder();
 
@@ -35,11 +35,11 @@ namespace SampleDataGenerator.Sources
             return result.ToString();
         }
 
-        public IEnumerable<string> Get(int count)
+        public IEnumerable<string> Generate(int count)
         {
             while (count-- > 0)
             {
-                yield return Get();
+                yield return Generate();
             }
         }
     }

@@ -23,6 +23,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Rules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,8 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\ArrayPropertyGeneratorBuilder.cs" />
-    <Compile Include="Builders\INullableDatePropertyGeneratorBuilder.cs" />
-    <Compile Include="Builders\NullableDatePropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\StringPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\IStringPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\IArrayPropertyGeneratorBuilder.cs" />
@@ -53,22 +54,22 @@
     <Compile Include="Builders\IPropertyGeneratorBuilder.cs" />
     <Compile Include="Builders\PropertyGeneratorBuilderBase.cs" />
     <Compile Include="Builders\DatePropertyGeneratorBuilder.cs" />
-    <Compile Include="Builders\ObjectGeneratorBuilder.cs" />
+    <Compile Include="Builders\ObjectGeneratorBuilder.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Builders\PropertyGeneratorBuilder.cs" />
-    <Compile Include="Generators\NullableDateGenerator.cs" />
-    <Compile Include="Generators\DateGenerator.cs" />
     <Compile Include="Generators\IObjectGenerator.cs" />
     <Compile Include="Generators\ObjectGeneratorGenerator.cs" />
     <Compile Include="Generators\FuncGenerator.cs" />
-    <Compile Include="Generators\IPropertyGenerator.cs" />
-    <Compile Include="Generators\SourceGenerator.cs" />
-    <Compile Include="Generators\StringGenerator.cs">
+    <Compile Include="Sources\DateGenerator.cs" />
+    <Compile Include="Sources\IElementEnumerableGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Sources\PhoneNumberSource.cs" />
-    <Compile Include="Sources\ISource.cs" />
-    <Compile Include="Sources\RandomSource.cs" />
-    <Compile Include="Sources\SequencialSource.cs" />
+    <Compile Include="Sources\IElementGenerator.cs" />
+    <Compile Include="Sources\JoinedStringSource.cs" />
+    <Compile Include="Sources\PhoneNumberGenerator.cs" />
+    <Compile Include="Sources\ArrayRandomizer.cs" />
+    <Compile Include="Sources\ArraySequencer.cs" />
     <Compile Include="StaticData.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Generators\ObjectGenerator.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using SampleDataGenerator.Generators;
 using SampleDataGenerator.Sources;
@@ -12,16 +13,25 @@ namespace SampleDataGenerator.Builders
         {
         }
 
+        protected PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Action<TObj, TProp>> expr)
+            : base(from, expr)
+        {
+        }
+
         public IObjectGeneratorBuilder<TObj> ChooseFrom(params TProp[] list)
         {
-            var pgen = new SourceGenerator<TProp>(new SequencialSource<TProp>(list));
+            var gen = new ArraySequencer<TProp>(list);
+
+            var pgen = new FuncGenerator<TProp>(() => gen.Generate(1).FirstOrDefault());
 
             return this.Add(pgen);
         }
 
         public IObjectGeneratorBuilder<TObj> ChooseRandomlyFrom(params TProp[] list)
         {
-            var pgen = new SourceGenerator<TProp>(new RandomSource<TProp>(list));
+            var gen = new ArrayRandomizer<TProp>(list);
+
+            var pgen = new FuncGenerator<TProp>(() => gen.Generate(1).FirstOrDefault());
 
             return this.Add(pgen);
         }

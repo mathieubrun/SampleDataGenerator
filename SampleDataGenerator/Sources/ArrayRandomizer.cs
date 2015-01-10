@@ -4,13 +4,13 @@ using System.Linq;
 
 namespace SampleDataGenerator.Sources
 {
-    public class RandomSource<TProp> : ISource<TProp>
+    public class ArrayRandomizer<TProp> : IElementEnumerableGenerator<TProp>
     {
         private static readonly Random Rnd = new Random();
 
         private readonly TProp[] source;
 
-        public RandomSource(params TProp[] source)
+        public ArrayRandomizer(params TProp[] source)
         {
             if (source == null)
             {
@@ -20,17 +20,7 @@ namespace SampleDataGenerator.Sources
             this.source = source;
         }
 
-        public TProp Get()
-        {
-            if (!source.Any())
-            {
-                return default(TProp);
-            }
-
-            return this.source[Rnd.Next(this.source.Length)];
-        }
-
-        public IEnumerable<TProp> Get(int count)
+        public IEnumerable<TProp> Generate(int count)
         {
             // TODO : optimize
             return this.Loop().Take(count);
