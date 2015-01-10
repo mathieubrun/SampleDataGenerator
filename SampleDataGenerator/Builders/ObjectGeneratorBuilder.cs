@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using SampleDataGenerator.Generators;
+using SampleDataGenerator.Sources;
 
 namespace SampleDataGenerator.Builders
 {
@@ -25,9 +26,9 @@ namespace SampleDataGenerator.Builders
             return new ArrayPropertyGeneratorBuilder<TObj, TProp>(this, propertyExpression);
         }
 
-        public INullableDatePropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, DateTime?>> propertyExpression)
+        public IDatePropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, DateTime?>> propertyExpression)
         {
-            return new NullableDatePropertyGeneratorBuilder<TObj>(this, propertyExpression);
+            return new DatePropertyGeneratorBuilder<TObj>(this, propertyExpression);
         }
 
         public IDatePropertyGeneratorBuilder<TObj> For(Expression<Func<TObj, DateTime>> propertyExpression)
@@ -50,7 +51,7 @@ namespace SampleDataGenerator.Builders
             return this.generator.Generate(count);
         }
 
-        internal ObjectGeneratorBuilder<TObj> Add<TProp>(IPropertyGenerator<TProp> build, Expression<Func<TObj, TProp>> propertyExpression)
+        internal ObjectGeneratorBuilder<TObj> Add<TProp>(IElementGenerator<TProp> build, Expression<Action<TObj, TProp>> propertyExpression)
         {
             this.generator.Add(build, propertyExpression);
 

@@ -6,32 +6,21 @@ using System.Threading.Tasks;
 
 namespace SampleDataGenerator.Sources
 {
-    public class SequencialSource<TProp> : ISource<TProp>
+    public class ArraySequencer<TProp> : IElementEnumerableGenerator<TProp>
     {
-        private readonly TProp[] source;
-
         private IEnumerator<TProp> enumerator;
 
-        public SequencialSource(params TProp[] source)
+        public ArraySequencer(params TProp[] source)
         {
             if (source == null)
             {
                 throw new ArgumentNullException("source");
             }
 
-            this.source = source;
-
             this.enumerator = this.Loop(source).GetEnumerator();
         }
 
-        public TProp Get()
-        {
-            this.enumerator.MoveNext();
-
-            return this.enumerator.Current;
-        }
-
-        public IEnumerable<TProp> Get(int count)
+        public IEnumerable<TProp> Generate(int count)
         {
             while (count-- > 0)
             {

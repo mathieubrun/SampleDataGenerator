@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SampleDataGenerator.Generators;
+using SampleDataGenerator.Sources;
 
 namespace SampleDataGenerator.Tests.Generators
 {
@@ -17,7 +17,7 @@ namespace SampleDataGenerator.Tests.Generators
             var generator = new DateGenerator(start, end);
 
             // act
-            var generated = generator.Get();
+            var generated = generator.Generate();
 
             // assert
             Assert.AreEqual(generated, start);
@@ -34,7 +34,7 @@ namespace SampleDataGenerator.Tests.Generators
             var generator = new DateGenerator(start, end);
 
             // act
-            var generated = generator.Get();
+            var generated = generator.Generate();
 
             // assert
             Assert.IsTrue(generated >= start);
