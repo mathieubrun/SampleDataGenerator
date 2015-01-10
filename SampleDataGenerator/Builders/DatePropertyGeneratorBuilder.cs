@@ -16,24 +16,8 @@ namespace SampleDataGenerator.Builders
         }
 
         public DatePropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, DateTime?>> expr)
-            : base(from)
+            : base(from, GetSetter(expr))
         {
-            var memberExpression = (MemberExpression)expr.Body;
-            var property = (PropertyInfo)memberExpression.Member;
-            var setMethod = property.GetSetMethod();
-
-            var objectParameter = Expression.Parameter(typeof(TObj), "x");
-            var propertyParameter = Expression.Parameter(typeof(DateTime), "y");
-
-            var cast = Expression.TypeAs(propertyParameter, typeof(DateTime?));
-
-            var newEpxression =
-                Expression.Lambda<Action<TObj, DateTime>>(
-                    Expression.Call(objectParameter, setMethod, cast),
-                    objectParameter,
-                    propertyParameter);
-
-            this.Expr = newEpxression;
         }
 
         public IObjectGeneratorBuilder<TObj> Range(DateTime start, DateTime end)
