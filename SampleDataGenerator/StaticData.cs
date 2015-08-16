@@ -15,6 +15,8 @@ namespace SampleDataGenerator
 
         private static Lazy<string[]> loremIpsum = new Lazy<string[]>(() => ReadData("LoremIpsum"));
 
+        private static Lazy<string[]> domains = new Lazy<string[]>(() => ReadData("Domains"));
+
         /// <summary>
         /// Gets first names
         /// </summary>
@@ -82,6 +84,20 @@ namespace SampleDataGenerator
             get
             {
                 return loremIpsum.Value;
+            }
+        }
+
+        /// <summary>
+        /// Gets domain names
+        /// </summary>
+        /// <remarks>
+        /// From http://www.alexa.com/topsites
+        /// </remarks>
+        public static string[] Domains
+        {
+            get
+            {
+                return domains.Value;
             }
         }
 
