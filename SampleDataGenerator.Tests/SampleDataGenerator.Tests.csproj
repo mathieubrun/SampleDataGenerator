@@ -67,6 +67,7 @@
     <Compile Include="Generators\ObjectGeneratorGeneratorTest.cs" />
     <Compile Include="Generators\FuncGeneratorTest.cs" />
     <Compile Include="Sources\DateGeneratorTest.cs" />
+    <Compile Include="Sources\DomainGeneratorTest.cs" />
     <Compile Include="Sources\PhoneNumberGeneratorTest.cs" />
     <Compile Include="Sources\ArrayRandomizerTest.cs" />
     <Compile Include="Sources\ArraySequencerTest.cs" />
