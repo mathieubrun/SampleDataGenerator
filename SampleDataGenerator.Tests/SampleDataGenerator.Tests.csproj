@@ -50,7 +50,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -65,9 +67,11 @@
     <Compile Include="Generators\ObjectGeneratorGeneratorTest.cs" />
     <Compile Include="Generators\FuncGeneratorTest.cs" />
     <Compile Include="Sources\DateGeneratorTest.cs" />
+    <Compile Include="Sources\DomainGeneratorTest.cs" />
     <Compile Include="Sources\PhoneNumberGeneratorTest.cs" />
     <Compile Include="Sources\ArrayRandomizerTest.cs" />
     <Compile Include="Sources\ArraySequencerTest.cs" />
+    <Compile Include="Sources\EmailGeneratorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SampleDataGenerator\SampleDataGenerator.csproj">
