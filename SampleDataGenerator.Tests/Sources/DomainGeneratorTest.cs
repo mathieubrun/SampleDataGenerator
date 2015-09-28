@@ -21,7 +21,6 @@ namespace SampleDataGenerator.Tests.Sources
 			var result = generator.Generate();
 
 			// assert
-			Assert.AreEqual(UriHostNameType.Dns, Uri.CheckHostName(result));
 			Assert.IsTrue(result.Split('.').Count() > 1);
 		}
 	}
