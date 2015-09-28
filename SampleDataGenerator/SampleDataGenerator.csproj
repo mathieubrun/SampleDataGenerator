@@ -62,6 +62,8 @@
     <Compile Include="Generators\ObjectGeneratorGenerator.cs" />
     <Compile Include="Generators\FuncGenerator.cs" />
     <Compile Include="Sources\DateGenerator.cs" />
+    <Compile Include="Sources\DomainGenerator.cs" />
+    <Compile Include="Sources\EmailGenerator.cs" />
     <Compile Include="Sources\IElementEnumerableGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
