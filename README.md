@@ -6,7 +6,7 @@ Sample data generator simplifies the process of creating random data for demo pu
 Build status
 ------------
 
-[![Build status](https://ci.appveyor.com/api/projects/status/6pr6gdy8osxpxbti?svg=true)](https://ci.appveyor.com/project/Mathieu/sampledatagenerator)
+[![Build status](https://img.shields.io/appveyor/ci/Mathieu/SampleDataGenerator.svg)](https://ci.appveyor.com/project/Mathieu/sampledatagenerator)
 
 Installation
 ------------
