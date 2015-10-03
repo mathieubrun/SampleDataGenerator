@@ -1,19 +1,24 @@
 SampleDataGenerator
-=============================
-
-[![Build status](https://ci.appveyor.com/api/projects/status/6pr6gdy8osxpxbti?svg=true)](https://ci.appveyor.com/project/Mathieu/sampledatagenerator)
+===================
 
 Sample data generator simplifies the process of creating random data for demo purposes.
 
+Build status
+------------
+
+[![Build status](https://ci.appveyor.com/api/projects/status/6pr6gdy8osxpxbti?svg=true)](https://ci.appveyor.com/project/Mathieu/sampledatagenerator)
+
 Installation
-============
+------------
+
+[![Nuget count](http://img.shields.io/nuget/v/SampleDataGenerator.svg)](https://www.nuget.org/packages/SampleDataGenerator/) [![Nuget downloads](http://img.shields.io/nuget/dt/SampleDataGenerator.svg)](https://www.nuget.org/packages/SampleDataGenerator/)
 
 ```
 PM> Install-Package SampleDataGenerator
 ```
 
 Usage
-=====
+-----
 
 Given the following class :
 
@@ -42,7 +47,7 @@ var clients = clientGenerator.Generate(50).ToList();
 ```
 
 Static data available
-=====================
+---------------------
 
 - First names
 - Last names
