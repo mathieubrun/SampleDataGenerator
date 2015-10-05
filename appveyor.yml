@@ -18,6 +18,11 @@ environment:
   COVERITY_EMAIL:
     secure: 6TqNM8aAZF3nLCV8ku1qCtKjb6qCFzCzv6aERdnFsVE=
 
+artifacts:
+
+  # pushing a single file
+  - path: SampleDataGenerator.zip
+
 install:
 - ps: |
     $Env:RUN_COVERITY = $True
