@@ -34,11 +34,13 @@ install:
       cinst curl -y
     }
 
-build:
-  project: Build.proj
-  publish_nuget: true
-  publish_nuget_symbols: true
-  verbosity: minimal
+build_script:
+- ps: |
+    & cov-build.exe --dir cov-int msbuild "$Env:APPVEYOR_BUILD_FOLDER\SampleDataGenerator.sln" `
+      /verbosity:normal `
+      /p:Configuration=Release `
+      /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" `
+      /property:ExtraDefine="LEAKS_IDENTIFYING"
 
 after_test:
 - ps: |
