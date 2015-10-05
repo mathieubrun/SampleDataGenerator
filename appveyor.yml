@@ -24,7 +24,7 @@ cache:
 
 install:
 - ps: |
-    $Env:RUN_COVERITY = $($Env:APPVEYOR_SCHEDULED_BUILD -eq $True)
+    $Env:RUN_COVERITY = $True
     Write-Host "RUN_COVERITY = " -NoNewLine
     Write-Host $Env:RUN_COVERITY -ForegroundColor "Green"
 
@@ -42,7 +42,7 @@ build:
 after_test:
 - ps: |
     
-    If ($Env:RUN_COVERITY -eq $True -and $Env:publish_on_success -eq $True)
+    If ($Env:RUN_COVERITY -eq $True)
     {
       7z a "$Env:APPVEYOR_BUILD_FOLDER\$Env:APPVEYOR_PROJECT_NAME.zip" "$Env:APPVEYOR_BUILD_FOLDER\cov-int\"
 
