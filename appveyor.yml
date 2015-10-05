@@ -18,6 +18,11 @@ environment:
   COVERITY_EMAIL:
     secure: 6TqNM8aAZF3nLCV8ku1qCtKjb6qCFzCzv6aERdnFsVE=
 
+artifacts:
+
+  # pushing a single file
+  - path: SampleDataGenerator.zip
+
 # build cache to preserve files/folders between builds
 cache:
   - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
