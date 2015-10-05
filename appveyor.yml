@@ -27,7 +27,7 @@ artifacts:
 
 install:
 - ps: |
-    $Env:RUN_COVERITY = $False
+    $Env:RUN_COVERITY = $True
     $Env:RUN_COVERALLS = $True
     Write-Host "RUN_COVERITY = " -NoNewLine
     Write-Host $Env:RUN_COVERITY -ForegroundColor "Green"
