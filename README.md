@@ -9,6 +9,9 @@ Build status
 [![Build status](https://img.shields.io/appveyor/ci/Mathieu/SampleDataGenerator.svg)](https://ci.appveyor.com/project/Mathieu/sampledatagenerator)
 [![Coverity status](https://img.shields.io/coverity/scan/6554.svg)](https://scan.coverity.com/projects/mathieubrun-sampledatagenerator)
 
+[![Coveralls status](https://img.shields.io/coveralls/mathieubrun/SampleDataGenerator/dev.svg)](https://coveralls.io/github/mathieubrun/SampleDataGenerator)
+
+
 Installation
 ------------
 
