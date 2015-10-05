@@ -46,7 +46,6 @@ test_script:
 
 after_test:
 - ps: |
-    
     If ($Env:RUN_COVERITY -eq $True)
     {
       7z a "$Env:APPVEYOR_BUILD_FOLDER\$Env:APPVEYOR_PROJECT_NAME.zip" "$Env:APPVEYOR_BUILD_FOLDER\cov-int\"
@@ -68,7 +67,7 @@ after_test:
         cat .\curl-out.txt
     }
 
-	If ($Env:RUN_COVERALLS -eq $True)
+    If ($Env:RUN_COVERALLS -eq $True)
     {
       Write-Host "Uploading code coverage result..." -ForegroundColor "Green"
       .\packages\coveralls.net.0.6.0\csmacnz.Coveralls.exe `
