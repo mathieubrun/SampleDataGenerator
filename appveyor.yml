@@ -70,7 +70,7 @@ after_test:
     If ($Env:RUN_COVERALLS -eq $True)
     {
       Write-Host "Uploading code coverage result..." -ForegroundColor "Green"
-      .\packages\coveralls.net.0.6.0\csmacnz.Coveralls.exe `
+      .\packages\coveralls.net.0.6.0\tools\csmacnz.Coveralls.exe `
         --dynamiccodecoverage -i coverage.coveragexml `
         --repoToken $Env:coveralls_token `
         --commitId $Env:APPVEYOR_REPO_COMMIT `
