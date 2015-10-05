@@ -37,7 +37,7 @@ build:
   verbosity: minimal
 
 test_script:
-- ps: >-
+- ps: |
     vstest.console.exe /inIsolation /Enablecodecoverage $Env:APPVEYOR_BUILD_FOLDER\SampleDataGenerator.Tests\bin\Debug\SampleDataGenerator.Tests.dll
     $coverageFilePath = Resolve-Path -path "TestResults\*\*.coverage"
     $coverageFilePath = $coverageFilePath.ToString()
