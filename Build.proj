@@ -2,7 +2,8 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <Target Name="Build">
-    <Exec Command='cov-build.exe --dir cov-int msbuild SampleDataGenerator.sln /verbosity:normal /p:Configuration=Release /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"'/>
+    <Exec Command='cov-build.exe --dir cov-int msbuild .\SampleDataGenerator\SampleDataGenerator.csproj /t:Rebuild'/>
+    <Exec Command='msbuild .\SampleDataGenerator.Tests\SampleDataGenerator.Tests.csproj'/>
   </Target>
 
 </Project>
