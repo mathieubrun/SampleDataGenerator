@@ -37,11 +37,29 @@ install:
       cinst curl -y
     }
 
-build:
-  project: Build.proj
-  publish_nuget: true
-  publish_nuget_symbols: true
-  verbosity: minimal
+build_script:
+- ps: |
+    nuget restore
+    
+    $buildCmd = "C:\Program Files (x86)\MSBuild\12.0\bin\msbuild.exe"
+    $buildArgs = @(
+      "/m",
+      "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll",
+      "/p:Configuration=$env:CONFIGURATION",
+      "/p:Platform=$env:PLATFORM")
+    
+    # If build is not a scheduled one, than simply build project with MSBuild.
+    if ($env:APPVEYOR_SCHEDULED_BUILD -ne "True") {
+      & $buildCmd $buildArgs
+      return
+    }
+    
+    # Else, build project with Coverity Scan.
+    "Building project with Coverity..."
+    & ".\cov-analysis-win64-7.6.0\bin\cov-build.exe" `
+      --dir cov-int `
+      --encoding=UTF-8 `
+      $buildCmd $buildArgs
 
 test_script:
 - ps: |
