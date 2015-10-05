@@ -21,6 +21,7 @@ environment:
 install:
 - ps: |
     $Env:RUN_COVERITY = $False
+    $Env:RUN_COVERALLS = $True
     Write-Host "RUN_COVERITY = " -NoNewLine
     Write-Host $Env:RUN_COVERITY -ForegroundColor "Green"
 
@@ -42,10 +43,6 @@ test_script:
     $coverageFilePath = $coverageFilePath.ToString()
     if(Test-Path .\coverage.coveragexml){ rm .\coverage.coveragexml }
     ."C:\Program Files (x86)\Microsoft Visual Studio 12.0\Team Tools\Dynamic Code Coverage Tools\CodeCoverage.exe" analyze /output:coverage.coveragexml "$coverageFilePath"
-    Push-AppveyorArtifact coverage.coveragexml
-    $coveralls = (Resolve-Path "src/packages/coveralls.net.*/tools/csmacnz.coveralls.exe").ToString()
-    & $coveralls --dynamiccodecoverage -i coverage.coveragexml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID --useRelativePaths -o cov.json
-    Push-AppveyorArtifact cov.json
 
 after_test:
 - ps: |
@@ -69,6 +66,22 @@ after_test:
         https://scan.coverity.com/builds?project=mathieubrun%2FSampleDataGenerator
 
         cat .\curl-out.txt
+    }
+
+	If ($Env:RUN_COVERALLS -eq $True)
+    {
+      Write-Host "Uploading code coverage result..." -ForegroundColor "Green"
+      .\packages\coveralls.net.0.6.0\csmacnz.Coveralls.exe `
+        --dynamiccodecoverage -i coverage.coveragexml `
+        --repoToken $Env:coveralls_token `
+        --commitId $Env:APPVEYOR_REPO_COMMIT `
+        --commitBranch $Env:APPVEYOR_REPO_BRANCH `
+        --commitAuthor $Env:APPVEYOR_REPO_COMMIT_AUTHOR `
+        --commitEmail $Env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL `
+        --commitMessage $Env:APPVEYOR_REPO_COMMIT_MESSAGE `
+        --useRelativePaths `
+        --basePath "$Env:APPVEYOR_BUILD_FOLDER\"`
+        --jobId $Env:APPVEYOR_JOB_ID
     }
 
 deploy:
