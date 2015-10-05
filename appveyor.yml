@@ -43,6 +43,7 @@ build_script:
     
     $buildCmd = "C:\Program Files (x86)\MSBuild\12.0\bin\msbuild.exe"
     $buildArgs = @(
+      "SampleDataGenerator.sln",
       "/m",
       "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll",
       "/p:Configuration=$env:CONFIGURATION",
