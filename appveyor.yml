@@ -45,7 +45,6 @@ install:
     
     If ($Env:RUN_CODECOV -eq $True)
     {
-      set PATH=C:\Python34-x64;C:\Python34-x64\Scripts;%PATH%
       pip install --user codecov
     }
     
