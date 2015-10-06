@@ -30,16 +30,25 @@ install:
 - ps: |
     $Env:RUN_COVERITY = $False # $Env:APPVEYOR_REPO_BRANCH -eq "dev"
     $Env:RUN_COVERALLS = $True
+    $Env:RUN_CODECOV = $True
     Write-Host "RUN_COVERITY = " -NoNewLine
     Write-Host $Env:RUN_COVERITY -ForegroundColor "Green"
     Write-Host "RUN_COVERALLS = " -NoNewLine
     Write-Host $Env:RUN_COVERALLS -ForegroundColor "Green"
+    Write-Host "RUN_CODECOV = " -NoNewLine
+    Write-Host $Env:RUN_CODECOV -ForegroundColor "Green"
 
     If ($Env:RUN_COVERITY -eq $True)
     {
       cinst curl -y
     }
-
+    
+    If ($Env:RUN_CODECOV -eq $True)
+    {
+      set PATH=C:\Python34-x64;C:\Python34-x64\Scripts;%PATH%
+      pip install --user codecov
+    }
+    
 build_script:
 - ps: |
     nuget restore
@@ -110,7 +119,12 @@ after_test:
         --basePath "$Env:APPVEYOR_BUILD_FOLDER\"`
         --jobId $Env:APPVEYOR_JOB_ID
     }
-
+    
+    If ($Env:RUN_CODECOV -eq $True)
+    {
+      codecov
+    }
+    
     nuget pack .\SampleDataGenerator\SampleDataGenerator.csproj -OutputDirectory . -Symbols
 
 deploy:
