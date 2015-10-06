@@ -77,7 +77,7 @@ test_script:
         -target:"vstest.console.exe" `
         -targetargs:".\SampleDataGenerator.Tests\bin\Debug\SampleDataGenerator.Tests.dll" `
         -hideskipped:All -output:.\SampleDataGenerator.Tests.Coverage.xml
- 
+
 after_test:
 - ps: |
     If ($Env:RUN_COVERITY -eq $True)
