@@ -20,6 +20,11 @@ environment:
   COVERITY_EMAIL:
     secure: 6TqNM8aAZF3nLCV8ku1qCtKjb6qCFzCzv6aERdnFsVE=
 
+artifacts:
+  # pushing a single file
+  - path: SampleDataGenerator.{version}.nupkg
+  - path: SampleDataGenerator.{version}.symbols.nupkg
+
 install:
 - ps: |
     $Env:RUN_COVERITY = $Env:APPVEYOR_REPO_BRANCH -eq "dev"
@@ -104,6 +109,8 @@ after_test:
         --basePath "$Env:APPVEYOR_BUILD_FOLDER\"`
         --jobId $Env:APPVEYOR_JOB_ID
     }
+
+    nuget pack .\SampleDataGenerator\SampleDataGenerator.csproj -OutputDirectory . -Symbols
 
 deploy:
 - provider: NuGet
