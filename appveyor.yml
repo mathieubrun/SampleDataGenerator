@@ -20,17 +20,14 @@ environment:
   COVERITY_EMAIL:
     secure: 6TqNM8aAZF3nLCV8ku1qCtKjb6qCFzCzv6aERdnFsVE=
 
-artifacts:
-
-  # pushing a single file
-  - path: SampleDataGenerator.zip
-
 install:
 - ps: |
-    $Env:RUN_COVERITY = $True
+    $Env:RUN_COVERITY = $Env:APPVEYOR_REPO_BRANCH -eq "dev"
     $Env:RUN_COVERALLS = $True
     Write-Host "RUN_COVERITY = " -NoNewLine
     Write-Host $Env:RUN_COVERITY -ForegroundColor "Green"
+	Write-Host "RUN_COVERALLS = " -NoNewLine
+    Write-Host $Env:RUN_COVERALLS -ForegroundColor "Green"
 
     If ($Env:RUN_COVERITY -eq $True)
     {
@@ -49,10 +46,10 @@ build_script:
       "/p:Configuration=Debug")
     
     # If build is not a scheduled one, than simply build project with MSBuild.
-    #   if ($env:APPVEYOR_SCHEDULED_BUILD -ne "True") {
-    #      & $buildCmd $buildArgs
-    ##      return
-    #    }
+    if ($Env:RUN_COVERITY -ne "True") {
+      & $buildCmd $buildArgs
+      return
+    }
     
     # Else, build project with Coverity Scan.
     "Building project with Coverity..."
