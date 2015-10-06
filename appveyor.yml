@@ -22,9 +22,8 @@ environment:
 
 artifacts:
   # pushing a single file
-  - path: SampleDataGenerator.{version}.nupkg
-  - path: SampleDataGenerator.{version}.symbols.nupkg
-
+  - path: path: out\*.nupkg
+  
 install:
 - ps: |
     $Env:RUN_COVERITY = $Env:APPVEYOR_REPO_BRANCH -eq "dev"
@@ -110,7 +109,7 @@ after_test:
         --jobId $Env:APPVEYOR_JOB_ID
     }
 
-    nuget pack .\SampleDataGenerator\SampleDataGenerator.csproj -OutputDirectory . -Symbols
+    nuget pack .\SampleDataGenerator\SampleDataGenerator.csproj -OutputDirectory out -Symbols
 
 deploy:
 - provider: NuGet
