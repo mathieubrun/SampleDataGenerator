@@ -29,7 +29,7 @@ artifacts:
 install:
 - ps: |
     $Env:RUN_COVERITY = $False # $Env:APPVEYOR_REPO_BRANCH -eq "dev"
-    $Env:RUN_COVERALLS = $True
+    $Env:RUN_COVERALLS = $False
     $Env:RUN_CODECOV = $True
     Write-Host "RUN_COVERITY = " -NoNewLine
     Write-Host $Env:RUN_COVERITY -ForegroundColor "Green"
@@ -77,10 +77,10 @@ build_script:
 test_script:
 - ps: |
     vstest.console.exe /inIsolation /Enablecodecoverage $Env:APPVEYOR_BUILD_FOLDER\SampleDataGenerator.Tests\bin\Debug\SampleDataGenerator.Tests.dll
-    $coverageFilePath = Resolve-Path -path "TestResults\*\*.coverage"
-    $coverageFilePath = $coverageFilePath.ToString()
-    if(Test-Path .\coverage.coveragexml){ rm .\coverage.coveragexml }
-    ."C:\Program Files (x86)\Microsoft Visual Studio 12.0\Team Tools\Dynamic Code Coverage Tools\CodeCoverage.exe" analyze /output:coverage.coveragexml "$coverageFilePath"
+    # $coverageFilePath = Resolve-Path -path "TestResults\*\*.coverage"
+    # $coverageFilePath = $coverageFilePath.ToString()
+    # if(Test-Path .\coverage.coveragexml){ rm .\coverage.coveragexml }
+    # ."C:\Program Files (x86)\Microsoft Visual Studio 12.0\Team Tools\Dynamic Code Coverage Tools\CodeCoverage.exe" analyze /output:coverage.coveragexml "$coverageFilePath"
 
 after_test:
 - ps: |
