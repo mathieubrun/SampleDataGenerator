@@ -26,7 +26,7 @@ artifacts:
   
 install:
 - ps: |
-    $Env:RUN_COVERITY = $False # $Env:APPVEYOR_REPO_BRANCH -eq "dev"
+    $Env:RUN_COVERITY = $Env:APPVEYOR_REPO_BRANCH -eq "master"
     $Env:RUN_COVERALLS = $False
     $Env:RUN_CODECOV = $True
     Write-Host "RUN_COVERITY = " -NoNewLine
