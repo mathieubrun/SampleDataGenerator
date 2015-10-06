@@ -2,6 +2,8 @@
 ## Eclipse
 #################
 
+cov-int
+
 Cogimator.SampleDataGenerator/Properties/AssemblyInfo.cs
 
 *.pydevproject
