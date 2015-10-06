@@ -72,17 +72,17 @@ build_script:
 
 test_script:
 - ps: |
-    $Env:APPVEYOR_BUILD_FOLDER\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe `
+    .\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe `
         -register:user `
         -target:"vstest.console.exe" `
-        -targetargs:"$Env:APPVEYOR_BUILD_FOLDER\SampleDataGenerator.Tests\bin\Debug\SampleDataGenerator.Tests.dll" `
-        -hideskipped:All -output:$Env:APPVEYOR_BUILD_FOLDER\SampleDataGenerator.Tests.Coverage.xml
- 
+        -targetargs:".\SampleDataGenerator.Tests\bin\Debug\SampleDataGenerator.Tests.dll" `
+        -hideskipped:All -output:.\SampleDataGenerator.Tests.Coverage.xml
+
 after_test:
 - ps: |
     If ($Env:RUN_COVERITY -eq $True)
     {
-      7z a "$Env:APPVEYOR_BUILD_FOLDER\$Env:APPVEYOR_PROJECT_NAME.zip" "$Env:APPVEYOR_BUILD_FOLDER\cov-int\"
+      7z a ".\$Env:APPVEYOR_PROJECT_NAME.zip" ".\cov-int\"
 
       # cf. http://stackoverflow.com/a/25045154/335418
       Remove-item alias:curl
