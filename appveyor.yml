@@ -15,8 +15,6 @@ assembly_info:
   assembly_informational_version: '{version}'
 
 environment:
-  COVERALLS_REPO_TOKEN:
-    secure: 4hr9SMmxg+bbvY0LAQZ8hCJ8i+AIaofGZBST4FYJSxqSP3CoLsn8KY3dnWAmNYNz
   COVERITY_TOKEN:
     secure: 3ynsUdboC/OKI8c/LJsjExqNeytf6wMCGGMqk8+KRis=
   COVERITY_EMAIL:
@@ -33,8 +31,6 @@ install:
     $Env:RUN_CODECOV = $True
     Write-Host "RUN_COVERITY = " -NoNewLine
     Write-Host $Env:RUN_COVERITY -ForegroundColor "Green"
-    Write-Host "RUN_COVERALLS = " -NoNewLine
-    Write-Host $Env:RUN_COVERALLS -ForegroundColor "Green"
     Write-Host "RUN_CODECOV = " -NoNewLine
     Write-Host $Env:RUN_CODECOV -ForegroundColor "Green"
 
@@ -76,12 +72,12 @@ build_script:
 
 test_script:
 - ps: |
-    vstest.console.exe /inIsolation /Enablecodecoverage $Env:APPVEYOR_BUILD_FOLDER\SampleDataGenerator.Tests\bin\Debug\SampleDataGenerator.Tests.dll
-    # $coverageFilePath = Resolve-Path -path "TestResults\*\*.coverage"
-    # $coverageFilePath = $coverageFilePath.ToString()
-    # if(Test-Path .\coverage.coveragexml){ rm .\coverage.coveragexml }
-    # ."C:\Program Files (x86)\Microsoft Visual Studio 12.0\Team Tools\Dynamic Code Coverage Tools\CodeCoverage.exe" analyze /output:coverage.coveragexml "$coverageFilePath"
-
+    $Env:APPVEYOR_BUILD_FOLDER\packages\OpenCover.4.6.166\tools\OpenCover.Console.exe `
+        -register:user `
+        -target:"vstest.console.exe" `
+        -targetargs:"$Env:APPVEYOR_BUILD_FOLDER\SampleDataGenerator.Tests\bin\Debug\SampleDataGenerator.Tests.dll" `
+        -hideskipped:All -output:$Env:APPVEYOR_BUILD_FOLDER\SampleDataGenerator.Tests.Coverage.xml
+ 
 after_test:
 - ps: |
     If ($Env:RUN_COVERITY -eq $True)
@@ -105,22 +101,6 @@ after_test:
         cat .\curl-out.txt
     }
 
-    If ($Env:RUN_COVERALLS -eq $True)
-    {
-      Write-Host "Uploading code coverage result..." -ForegroundColor "Green"
-      .\packages\coveralls.net.0.6.0\tools\csmacnz.Coveralls.exe `
-        --dynamiccodecoverage -i coverage.coveragexml `
-        --repoToken $Env:COVERALLS_REPO_TOKEN `
-        --commitId $Env:APPVEYOR_REPO_COMMIT `
-        --commitBranch $Env:APPVEYOR_REPO_BRANCH `
-        --commitAuthor $Env:APPVEYOR_REPO_COMMIT_AUTHOR `
-        --commitEmail $Env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL `
-        --commitMessage $Env:APPVEYOR_REPO_COMMIT_MESSAGE `
-        --useRelativePaths `
-        --basePath "$Env:APPVEYOR_BUILD_FOLDER\"`
-        --jobId $Env:APPVEYOR_JOB_ID
-    }
-    
     If ($Env:RUN_CODECOV -eq $True)
     {
       codecov
