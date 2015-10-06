@@ -3,6 +3,10 @@ version: 1.0.{build}
 # Do not build on tags (GitHub only)
 skip_tags: true
 
+branches:
+  except:
+    - gh-pages
+    
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
@@ -20,11 +24,11 @@ environment:
 
 artifacts:
   # pushing a single file
-  - path: out\*.nupkg
+  - path: .\*.nupkg
   
 install:
 - ps: |
-    $Env:RUN_COVERITY = $Env:APPVEYOR_REPO_BRANCH -eq "dev"
+    $Env:RUN_COVERITY = $False # $Env:APPVEYOR_REPO_BRANCH -eq "dev"
     $Env:RUN_COVERALLS = $True
     Write-Host "RUN_COVERITY = " -NoNewLine
     Write-Host $Env:RUN_COVERITY -ForegroundColor "Green"
@@ -107,7 +111,7 @@ after_test:
         --jobId $Env:APPVEYOR_JOB_ID
     }
 
-    nuget pack .\SampleDataGenerator\SampleDataGenerator.csproj -OutputDirectory out -Symbols
+    nuget pack .\SampleDataGenerator\SampleDataGenerator.csproj -OutputDirectory . -Symbols
 
 deploy:
 - provider: NuGet
