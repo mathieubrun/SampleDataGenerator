@@ -46,7 +46,7 @@ install:
     If ($Env:RUN_CODECOV -eq $True)
     {
       $env:Path += ";C:\Python34;C:\Python34\Scripts"
-      python -m pip install --upgrade pip
+      pip install --upgrade pip
       pip install codecov
     }
     
