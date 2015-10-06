@@ -1,0 +1,136 @@
+version: 1.0.{build}
+
+# Do not build on tags (GitHub only)
+skip_tags: true
+
+branches:
+  except:
+    - gh-pages
+    
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: 4hr9SMmxg+bbvY0LAQZ8hCJ8i+AIaofGZBST4FYJSxqSP3CoLsn8KY3dnWAmNYNz
+  COVERITY_TOKEN:
+    secure: 3ynsUdboC/OKI8c/LJsjExqNeytf6wMCGGMqk8+KRis=
+  COVERITY_EMAIL:
+    secure: 6TqNM8aAZF3nLCV8ku1qCtKjb6qCFzCzv6aERdnFsVE=
+
+artifacts:
+  # pushing a single file
+  - path: .\*.nupkg
+  
+install:
+- ps: |
+    $Env:RUN_COVERITY = $False # $Env:APPVEYOR_REPO_BRANCH -eq "dev"
+    $Env:RUN_COVERALLS = $False
+    $Env:RUN_CODECOV = $True
+    Write-Host "RUN_COVERITY = " -NoNewLine
+    Write-Host $Env:RUN_COVERITY -ForegroundColor "Green"
+    Write-Host "RUN_COVERALLS = " -NoNewLine
+    Write-Host $Env:RUN_COVERALLS -ForegroundColor "Green"
+    Write-Host "RUN_CODECOV = " -NoNewLine
+    Write-Host $Env:RUN_CODECOV -ForegroundColor "Green"
+
+    If ($Env:RUN_COVERITY -eq $True)
+    {
+      cinst curl -y
+    }
+    
+    If ($Env:RUN_CODECOV -eq $True)
+    {
+      $env:Path += ";C:\Python34-x64;C:\Python34-x64\Scripts"
+      pip install --upgrade pip
+      pip install codecov
+    }
+    
+build_script:
+- ps: |
+    nuget restore
+    
+    $buildCmd = "C:\Program Files (x86)\MSBuild\12.0\bin\msbuild.exe"
+    $buildArgs = @(
+      "SampleDataGenerator.sln",
+      "/m",
+      "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll",
+      "/p:Configuration=Debug")
+    
+    # If build is not a scheduled one, than simply build project with MSBuild.
+    if ($Env:RUN_COVERITY -ne "True") {
+      & $buildCmd $buildArgs
+      return
+    }
+    
+    # Else, build project with Coverity Scan.
+    "Building project with Coverity..."
+    & "cov-build.exe" `
+      --dir cov-int `
+      --encoding=UTF-8 `
+      $buildCmd $buildArgs
+
+test_script:
+- ps: |
+    vstest.console.exe /inIsolation /Enablecodecoverage $Env:APPVEYOR_BUILD_FOLDER\SampleDataGenerator.Tests\bin\Debug\SampleDataGenerator.Tests.dll
+    # $coverageFilePath = Resolve-Path -path "TestResults\*\*.coverage"
+    # $coverageFilePath = $coverageFilePath.ToString()
+    # if(Test-Path .\coverage.coveragexml){ rm .\coverage.coveragexml }
+    # ."C:\Program Files (x86)\Microsoft Visual Studio 12.0\Team Tools\Dynamic Code Coverage Tools\CodeCoverage.exe" analyze /output:coverage.coveragexml "$coverageFilePath"
+
+after_test:
+- ps: |
+    If ($Env:RUN_COVERITY -eq $True)
+    {
+      7z a "$Env:APPVEYOR_BUILD_FOLDER\$Env:APPVEYOR_PROJECT_NAME.zip" "$Env:APPVEYOR_BUILD_FOLDER\cov-int\"
+
+      # cf. http://stackoverflow.com/a/25045154/335418
+      Remove-item alias:curl
+
+      Write-Host "Uploading Coverity analysis result..." -ForegroundColor "Green"
+
+      curl --silent --show-error `
+        --output curl-out.txt `
+        --form token="$Env:coverity_token" `
+        --form email="$Env:coverity_email" `
+        --form "file=@$Env:APPVEYOR_BUILD_FOLDER\$Env:APPVEYOR_PROJECT_NAME.zip" `
+        --form version="$Env:APPVEYOR_REPO_COMMIT" `
+        --form description="CI server scheduled build." `
+        https://scan.coverity.com/builds?project=mathieubrun%2FSampleDataGenerator
+
+        cat .\curl-out.txt
+    }
+
+    If ($Env:RUN_COVERALLS -eq $True)
+    {
+      Write-Host "Uploading code coverage result..." -ForegroundColor "Green"
+      .\packages\coveralls.net.0.6.0\tools\csmacnz.Coveralls.exe `
+        --dynamiccodecoverage -i coverage.coveragexml `
+        --repoToken $Env:COVERALLS_REPO_TOKEN `
+        --commitId $Env:APPVEYOR_REPO_COMMIT `
+        --commitBranch $Env:APPVEYOR_REPO_BRANCH `
+        --commitAuthor $Env:APPVEYOR_REPO_COMMIT_AUTHOR `
+        --commitEmail $Env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL `
+        --commitMessage $Env:APPVEYOR_REPO_COMMIT_MESSAGE `
+        --useRelativePaths `
+        --basePath "$Env:APPVEYOR_BUILD_FOLDER\"`
+        --jobId $Env:APPVEYOR_JOB_ID
+    }
+    
+    If ($Env:RUN_CODECOV -eq $True)
+    {
+      codecov
+    }
+    
+    nuget pack .\SampleDataGenerator\SampleDataGenerator.csproj -OutputDirectory . -Symbols
+
+deploy:
+- provider: NuGet
+  api_key:
+    secure: m/HCKWefqM4C3LsfGn8DvC7F06m5EDUBzJW9oP7NGEnK752IMmcCGysaqJvC4uIY
+  on:
+    branch: master
