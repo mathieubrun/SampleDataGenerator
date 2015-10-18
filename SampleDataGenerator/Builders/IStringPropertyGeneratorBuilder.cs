@@ -8,5 +8,9 @@ namespace SampleDataGenerator.Builders
         IObjectGeneratorBuilder<TObj> LoremIpsum(int sentences);
 
         IObjectGeneratorBuilder<TObj> PhoneNumber(string pattern);
+
+        IObjectGeneratorBuilder<TObj> Email(params Expression<Func<TObj, string>>[] sources);
+
+        IObjectGeneratorBuilder<TObj> Website(params Expression<Func<TObj, string>>[] sources);
     }
 }

@@ -13,8 +13,8 @@ namespace SampleDataGenerator.Builders
         {
         }
 
-        protected PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Action<TObj, TProp>> expr)
-            : base(from, expr)
+        protected PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Action<TObj, TProp>> setter)
+            : base(from, setter)
         {
         }
 

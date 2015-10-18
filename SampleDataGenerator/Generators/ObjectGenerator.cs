@@ -16,14 +16,14 @@ namespace SampleDataGenerator.Generators
 
         private interface IPropertyAssigner<TObject>
         {
-            void SetValue(TObject target);
+            void SetValueOnTarget(TObject target);
         }
 
         public TObj Generate()
         {
             var o = Activator.CreateInstance<TObj>();
 
-            this.assigners.ForEach(x => x.SetValue(o));
+            this.assigners.ForEach(x => x.SetValueOnTarget(o));
 
             return o;
         }
@@ -39,6 +39,11 @@ namespace SampleDataGenerator.Generators
             this.assigners.Add(new Assigner<TProp>(expr, build));
         }
 
+        internal void Add<TProp>(IDependentElementGenerator<TObj, TProp> build, Expression<Action<TObj, TProp>> expr)
+        {
+            this.assigners.Add(new DependantAssigner<TProp>(expr, build));
+        }
+
         private class Assigner<TProp> : IPropertyAssigner<TObj>
         {
             private readonly Action<TObj, TProp> action;
@@ -50,10 +55,27 @@ namespace SampleDataGenerator.Generators
                 this.generator = generator;
             }
 
-            public void SetValue(TObj target)
+            public void SetValueOnTarget(TObj target)
             {
                 this.action(target, this.generator.Generate());
             }
-        }        
+        }
+
+        private class DependantAssigner<TProp> : IPropertyAssigner<TObj>
+        {
+            private readonly Action<TObj, TProp> action;
+            private readonly IDependentElementGenerator<TObj, TProp> generator;
+
+            public DependantAssigner(Expression<Action<TObj, TProp>> expr, IDependentElementGenerator<TObj, TProp> generator)
+            {
+                this.action = expr.Compile();
+                this.generator = generator;
+            }
+
+            public void SetValueOnTarget(TObj target)
+            {
+                this.action(target, this.generator.Generate(target));
+            }
+        }
     }
 }

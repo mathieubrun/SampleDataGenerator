@@ -61,12 +61,12 @@
     <Compile Include="Generators\IObjectGenerator.cs" />
     <Compile Include="Generators\ObjectGeneratorGenerator.cs" />
     <Compile Include="Generators\FuncGenerator.cs" />
+    <Compile Include="Sources\StringFormatGenerator.cs" />
     <Compile Include="Sources\DateGenerator.cs" />
-    <Compile Include="Sources\DomainGenerator.cs" />
-    <Compile Include="Sources\EmailGenerator.cs" />
     <Compile Include="Sources\IElementEnumerableGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Sources\IDependentElementGenerator.cs" />
     <Compile Include="Sources\IElementGenerator.cs" />
     <Compile Include="Sources\JoinedStringSource.cs" />
     <Compile Include="Sources\PhoneNumberGenerator.cs" />

@@ -10,17 +10,17 @@ namespace SampleDataGenerator.Tests.Builders
         public void ObjectGeneratorBuilder_Must_return_correct_builder()
         {
             // arrange
-            var sut = new ObjectGeneratorBuilder<TestObject>();
+            var sut = new ObjectGeneratorBuilder<Person>();
 
             // act
-            var dateBuilder = sut.For(x => x.DateTimeProperty);
-            var propertyBuilder = sut.For(x => x.StringProperty1);
-            var arrayBuilder = sut.For(x => x.NestedList);
+            var dateBuilder = sut.For(x => x.DateOfBirth);
+            var propertyBuilder = sut.For(x => x.FirstName);
+            var arrayBuilder = sut.For(x => x.Colleagues);
 
             // assert
-            Assert.IsInstanceOfType(dateBuilder, typeof(DatePropertyGeneratorBuilder<TestObject>));
-            Assert.IsInstanceOfType(propertyBuilder, typeof(PropertyGeneratorBuilder<TestObject, string>));
-            Assert.IsInstanceOfType(arrayBuilder, typeof(ArrayPropertyGeneratorBuilder<TestObject, TestObject>));
+            Assert.IsInstanceOfType(dateBuilder, typeof(DatePropertyGeneratorBuilder<Person>));
+            Assert.IsInstanceOfType(propertyBuilder, typeof(PropertyGeneratorBuilder<Person, string>));
+            Assert.IsInstanceOfType(arrayBuilder, typeof(ArrayPropertyGeneratorBuilder<Person, Person>));
         }
     }
 }

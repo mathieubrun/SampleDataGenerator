@@ -1,26 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
-using SampleDataGenerator.Generators;
+
 using SampleDataGenerator.Sources;
 
 namespace SampleDataGenerator.Builders
 {
     public class PropertyGeneratorBuilderBase<TObj, TProp>
     {
+        private readonly Expression<Action<TObj, TProp>> setter;
         private readonly ObjectGeneratorBuilder<TObj> builder;
-        private readonly Expression<Action<TObj, TProp>> expr;
 
         public PropertyGeneratorBuilderBase(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, TProp>> expr)
         {
             this.builder = from;
-            this.expr = GetSetter(expr);
+            this.setter = GetSetter(expr);
         }
 
-        protected PropertyGeneratorBuilderBase(ObjectGeneratorBuilder<TObj> from, Expression<Action<TObj, TProp>> expr)
+        protected PropertyGeneratorBuilderBase(ObjectGeneratorBuilder<TObj> from, Expression<Action<TObj, TProp>> setter)
         {
             this.builder = from;
-            this.expr = expr;
+            this.setter = setter;
         }
 
         protected static Expression<Action<TObj, TProp>> GetSetter<T>(Expression<Func<TObj, T>> expr)
@@ -45,7 +46,12 @@ namespace SampleDataGenerator.Builders
 
         protected ObjectGeneratorBuilder<TObj> Add(IElementGenerator<TProp> build)
         {
-            return this.builder.Add<TProp>(build, expr);
+            return this.builder.Add<TProp>(build, setter);
+        }
+
+        protected ObjectGeneratorBuilder<TObj> Add(IDependentElementGenerator<TObj, TProp> build)
+        {
+            return this.builder.Add<TProp>(build, setter);
         }
 
         private static Expression<Action<TObj, TProp>> GetSetter(Expression<Func<TObj, TProp>> expression)

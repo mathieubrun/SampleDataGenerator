@@ -9,12 +9,12 @@ namespace SampleDataGenerator.Builders
 {
     public class ObjectGeneratorBuilder<TObj> : IObjectGenerator<TObj>, IObjectGeneratorBuilder<TObj>
     {
-        private ObjectGenerator<TObj> generator;
-
         public ObjectGeneratorBuilder()
         {
-            this.generator = new ObjectGenerator<TObj>();
+            this.Generator = new ObjectGenerator<TObj>();
         }
+
+        public ObjectGenerator<TObj> Generator { get; set; }
 
         public IPropertyGeneratorBuilder<TObj, TProp> For<TProp>(Expression<Func<TObj, TProp>> propertyExpression)
         {
@@ -43,17 +43,24 @@ namespace SampleDataGenerator.Builders
 
         public TObj Generate()
         {
-            return this.generator.Generate();
+            return this.Generator.Generate();
         }
 
         public IEnumerable<TObj> Generate(int count)
         {
-            return this.generator.Generate(count);
+            return this.Generator.Generate(count);
         }
 
         internal ObjectGeneratorBuilder<TObj> Add<TProp>(IElementGenerator<TProp> build, Expression<Action<TObj, TProp>> propertyExpression)
         {
-            this.generator.Add(build, propertyExpression);
+            this.Generator.Add(build, propertyExpression);
+
+            return this;
+        }
+
+        internal ObjectGeneratorBuilder<TObj> Add<TProp>(IDependentElementGenerator<TObj, TProp> build, Expression<Action<TObj, TProp>> propertyExpression)
+        {
+            this.Generator.Add(build, propertyExpression);
 
             return this;
         }
