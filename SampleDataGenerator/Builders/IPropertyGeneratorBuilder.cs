@@ -12,6 +12,6 @@ namespace SampleDataGenerator.Builders
 
         IObjectGeneratorBuilder<TObj> CreateUsing(IObjectGenerator<TProp> generator);
 
-        IObjectGeneratorBuilder<TObj> CreateUsing(Expression<Func<TProp>> ee);
+        IObjectGeneratorBuilder<TObj> CreateUsing(Expression<Func<TProp>> expression);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using SampleDataGenerator.Generators;
 using SampleDataGenerator.Sources;
@@ -7,8 +8,8 @@ namespace SampleDataGenerator.Builders
 {
     public class StringPropertyGeneratorBuilder<TObj> : PropertyGeneratorBuilder<TObj, string>, IStringPropertyGeneratorBuilder<TObj>
     {
-        public StringPropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, string>> expr)
-            : base(from, expr)
+        public StringPropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, string>> expression)
+            : base(from, expression)
         {
         }
 
