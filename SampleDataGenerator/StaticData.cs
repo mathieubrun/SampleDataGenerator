@@ -103,12 +103,10 @@ namespace SampleDataGenerator
 
         private static string[] ReadData(string resourceName)
         {
-            using (var str = typeof(StaticData).Assembly.GetManifestResourceStream(string.Format("SampleDataGenerator.Data.{0}.txt", resourceName)))
+            var str = typeof(StaticData).Assembly.GetManifestResourceStream(string.Format("SampleDataGenerator.Data.{0}.txt", resourceName));
+            using (var rdr = new StreamReader(str))
             {
-                using (var rdr = new StreamReader(str))
-                {
-                    return rdr.ReadToEnd().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                }
+                return rdr.ReadToEnd().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             }
         }
 
