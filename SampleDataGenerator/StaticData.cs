@@ -112,7 +112,7 @@ namespace SampleDataGenerator
             }
         }
 
-        public class PhoneNumbersPatterns
+        public static class PhoneNumbersPatterns
         {
             public const string France = "+33X XX XX XX XX";
         }
