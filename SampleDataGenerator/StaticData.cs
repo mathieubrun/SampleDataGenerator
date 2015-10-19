@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 
 namespace SampleDataGenerator
@@ -103,7 +104,7 @@ namespace SampleDataGenerator
 
         private static string[] ReadData(string resourceName)
         {
-            var str = typeof(StaticData).Assembly.GetManifestResourceStream(string.Format("SampleDataGenerator.Data.{0}.txt", resourceName));
+            var str = typeof(StaticData).Assembly.GetManifestResourceStream(string.Format(CultureInfo.InvariantCulture, "SampleDataGenerator.Data.{0}.txt", resourceName));
             using (var rdr = new StreamReader(str))
             {
                 return rdr.ReadToEnd().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
