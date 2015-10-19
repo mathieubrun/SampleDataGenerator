@@ -8,13 +8,13 @@ namespace SampleDataGenerator.Builders
 {
     public class PropertyGeneratorBuilder<TObj, TProp> : PropertyGeneratorBuilderBase<TObj, TProp>, IPropertyGeneratorBuilder<TObj, TProp>
     {
-        public PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, TProp>> expr)
-            : base(from, expr)
+        public PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, TProp>> expression)
+            : base(from, expression)
         {
         }
 
-        protected PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Action<TObj, TProp>> expr)
-            : base(from, expr)
+        protected PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Action<TObj, TProp>> expression)
+            : base(from, expression)
         {
         }
 
@@ -36,9 +36,9 @@ namespace SampleDataGenerator.Builders
             return this.Add(pgen);
         }
 
-        public IObjectGeneratorBuilder<TObj> CreateUsing(Expression<Func<TProp>> ee)
+        public IObjectGeneratorBuilder<TObj> CreateUsing(Expression<Func<TProp>> expression)
         {
-            var pgen = new FuncGenerator<TProp>(ee);
+            var pgen = new FuncGenerator<TProp>(expression);
 
             return this.Add(pgen);
         }
