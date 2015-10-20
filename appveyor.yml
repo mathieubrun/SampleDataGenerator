@@ -55,7 +55,8 @@ build_script:
       "SampleDataGenerator.sln",
       "/m",
       "/l:C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll",
-      "/p:Configuration=Debug")
+      "/p:Configuration=Release"
+	  "/p:RunCodeAnalysis=True")
     
     # If build is not a scheduled one, than simply build project with MSBuild.
     if ($Env:RUN_COVERITY -ne "True") {
