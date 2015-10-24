@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using SampleDataGenerator.Generators;
 
@@ -8,7 +9,11 @@ namespace SampleDataGenerator.Builders
     {
         IObjectGeneratorBuilder<TObj> ChooseFrom(params TProp[] list);
 
+        IObjectGeneratorBuilder<TObj> ChooseFrom(IEnumerable<TProp> list);
+
         IObjectGeneratorBuilder<TObj> ChooseRandomlyFrom(params TProp[] list);
+
+        IObjectGeneratorBuilder<TObj> ChooseRandomlyFrom(IEnumerable<TProp> list);
 
         IObjectGeneratorBuilder<TObj> CreateUsing(IObjectGenerator<TProp> generator);
 
