@@ -8,8 +8,8 @@ namespace SampleDataGenerator.Builders
 {
     public class ArrayPropertyGeneratorBuilder<TObj, TProp> : PropertyGeneratorBuilderBase<TObj, IEnumerable<TProp>>, IArrayPropertyGeneratorBuilder<TObj, TProp>
     {
-        public ArrayPropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, IEnumerable<TProp>>> expr)
-            : base(from, expr)
+        public ArrayPropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, IEnumerable<TProp>>> expression)
+            : base(from, expression)
         {
         }
 
