@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleDataGenerator", "SampleDataGenerator\SampleDataGenerator.csproj", "{5E0F9315-0F5F-40FF-9AB8-D7D30696A8D3}"
 EndProject
@@ -17,6 +17,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".readme", ".readme", "{CBBB7D7A-EFFA-4AF6-BB9C-BBAB8F287AA1}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{23116201-4582-4D83-A471-37AB36D98B38}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
 		Rules.Dictionary.xml = Rules.Dictionary.xml
 		Rules.ruleset = Rules.ruleset
 		Settings.StyleCop = Settings.StyleCop
