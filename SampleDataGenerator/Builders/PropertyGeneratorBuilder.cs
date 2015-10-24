@@ -21,7 +21,7 @@ namespace SampleDataGenerator.Builders
 
         public IObjectGeneratorBuilder<TObj> ChooseFrom(params TProp[] list)
         {
-            return ChooseFrom(list);
+            return ChooseFrom((IEnumerable<TProp>)list);
         }
 
         public IObjectGeneratorBuilder<TObj> ChooseFrom(IEnumerable<TProp> list)
@@ -35,7 +35,7 @@ namespace SampleDataGenerator.Builders
 
         public IObjectGeneratorBuilder<TObj> ChooseRandomlyFrom(params TProp[] list)
         {
-            return ChooseRandomlyFrom(list);
+            return ChooseRandomlyFrom((IEnumerable<TProp>)list);
         }
 
         public IObjectGeneratorBuilder<TObj> ChooseRandomlyFrom(IEnumerable<TProp> list)
