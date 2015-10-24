@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace SampleDataGenerator
@@ -15,15 +17,13 @@ namespace SampleDataGenerator
 
         private static Lazy<string[]> loremIpsum = new Lazy<string[]>(() => ReadData("LoremIpsum"));
 
-        private static Lazy<string[]> domains = new Lazy<string[]>(() => ReadData("Domains"));
-
         /// <summary>
         /// Gets first names
         /// </summary>
         /// <remarks>
         /// From : https://github.com/hadley/data-baby-names/blob/master/baby-names.csv
         /// </remarks>
-        public static string[] FirstNames
+        public static IEnumerable<string> FirstNames
         {
             get
             {
@@ -37,7 +37,7 @@ namespace SampleDataGenerator
         /// <remarks>
         /// From http://names.mongabay.com/most_common_surnames.htm
         /// </remarks>
-        public static string[] LastNames
+        public static IEnumerable<string> LastNames
         {
             get
             {
@@ -51,7 +51,7 @@ namespace SampleDataGenerator
         /// <remarks>
         /// From http://brendoman.com/media/users/dan/finctional_companies.txt
         /// </remarks>
-        public static string[] Companies
+        public static IEnumerable<string> Companies
         {
             get
             {
@@ -65,7 +65,7 @@ namespace SampleDataGenerator
         /// <remarks>
         /// From http://www.state.gov/misc/list/
         /// </remarks>
-        public static string[] Countries
+        public static IEnumerable<string> Countries
         {
             get
             {
@@ -79,7 +79,7 @@ namespace SampleDataGenerator
         /// <remarks>
         /// From http://en.wikipedia.org/wiki/Lorem_ipsum#Latin_source
         /// </remarks>
-        public static string[] LoremIpsum
+        public static IEnumerable<string> LoremIpsum
         {
             get
             {
@@ -87,32 +87,16 @@ namespace SampleDataGenerator
             }
         }
 
-        /// <summary>
-        /// Gets domain names
-        /// </summary>
-        /// <remarks>
-        /// From http://www.alexa.com/topsites
-        /// </remarks>
-        public static string[] Domains
-        {
-            get
-            {
-                return domains.Value;
-            }
-        }
-
         private static string[] ReadData(string resourceName)
         {
-            using (var str = typeof(StaticData).Assembly.GetManifestResourceStream(string.Format("SampleDataGenerator.Data.{0}.txt", resourceName)))
+            var str = typeof(StaticData).Assembly.GetManifestResourceStream(string.Format(CultureInfo.InvariantCulture, "SampleDataGenerator.Data.{0}.txt", resourceName));
+            using (var rdr = new StreamReader(str))
             {
-                using (var rdr = new StreamReader(str))
-                {
-                    return rdr.ReadToEnd().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                }
+                return rdr.ReadToEnd().Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             }
         }
 
-        public class PhoneNumbersPatterns
+        public static class PhoneNumbersPatterns
         {
             public const string France = "+33X XX XX XX XX";
         }

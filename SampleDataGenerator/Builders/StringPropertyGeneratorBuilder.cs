@@ -13,8 +13,8 @@ namespace SampleDataGenerator.Builders
     {
         private readonly Func<string, string> uppercase = x => Regex.Replace(CultureInfo.InvariantCulture.TextInfo.ToTitleCase(x ?? ""), "[^a-zA-Z0-9]+", "");
 
-        public StringPropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, string>> expr)
-            : base(from, expr)
+        public StringPropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, string>> expression)
+            : base(from, expression)
         {
         }
 

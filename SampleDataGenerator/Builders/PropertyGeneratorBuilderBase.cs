@@ -12,21 +12,21 @@ namespace SampleDataGenerator.Builders
         private readonly Expression<Action<TObj, TProp>> setter;
         private readonly ObjectGeneratorBuilder<TObj> builder;
 
-        public PropertyGeneratorBuilderBase(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, TProp>> expr)
+        public PropertyGeneratorBuilderBase(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, TProp>> expression)
         {
             this.builder = from;
-            this.setter = GetSetter(expr);
+            this.setter = GetSetter(expression);
         }
 
-        protected PropertyGeneratorBuilderBase(ObjectGeneratorBuilder<TObj> from, Expression<Action<TObj, TProp>> setter)
+        protected PropertyGeneratorBuilderBase(ObjectGeneratorBuilder<TObj> from, Expression<Action<TObj, TProp>> expression)
         {
             this.builder = from;
-            this.setter = setter;
+            this.setter = expression;
         }
 
-        protected static Expression<Action<TObj, TProp>> GetSetter<T>(Expression<Func<TObj, T>> expr)
+        protected static Expression<Action<TObj, TProp>> GetSetter<T>(Expression<Func<TObj, T>> expression)
         {
-            var memberExpression = (MemberExpression)expr.Body;
+            var memberExpression = (MemberExpression)expression.Body;
             var property = (PropertyInfo)memberExpression.Member;
             var setMethod = property.GetSetMethod();
 

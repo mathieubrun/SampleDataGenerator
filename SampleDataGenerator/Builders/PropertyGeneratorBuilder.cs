@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using SampleDataGenerator.Generators;
@@ -8,17 +9,22 @@ namespace SampleDataGenerator.Builders
 {
     public class PropertyGeneratorBuilder<TObj, TProp> : PropertyGeneratorBuilderBase<TObj, TProp>, IPropertyGeneratorBuilder<TObj, TProp>
     {
-        public PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, TProp>> expr)
-            : base(from, expr)
+        public PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Func<TObj, TProp>> expression)
+            : base(from, expression)
         {
         }
 
-        protected PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Action<TObj, TProp>> setter)
-            : base(from, setter)
+        protected PropertyGeneratorBuilder(ObjectGeneratorBuilder<TObj> from, Expression<Action<TObj, TProp>> expression)
+            : base(from, expression)
         {
         }
 
         public IObjectGeneratorBuilder<TObj> ChooseFrom(params TProp[] list)
+        {
+            return ChooseFrom((IEnumerable<TProp>)list);
+        }
+
+        public IObjectGeneratorBuilder<TObj> ChooseFrom(IEnumerable<TProp> list)
         {
             var gen = new ArraySequencer<TProp>(list);
 
@@ -29,6 +35,11 @@ namespace SampleDataGenerator.Builders
 
         public IObjectGeneratorBuilder<TObj> ChooseRandomlyFrom(params TProp[] list)
         {
+            return ChooseRandomlyFrom((IEnumerable<TProp>)list);
+        }
+
+        public IObjectGeneratorBuilder<TObj> ChooseRandomlyFrom(IEnumerable<TProp> list)
+        {
             var gen = new ArrayRandomizer<TProp>(list);
 
             var pgen = new FuncGenerator<TProp>(() => gen.Generate(1).FirstOrDefault());
@@ -36,9 +47,9 @@ namespace SampleDataGenerator.Builders
             return this.Add(pgen);
         }
 
-        public IObjectGeneratorBuilder<TObj> CreateUsing(Expression<Func<TProp>> ee)
+        public IObjectGeneratorBuilder<TObj> CreateUsing(Expression<Func<TProp>> expression)
         {
-            var pgen = new FuncGenerator<TProp>(ee);
+            var pgen = new FuncGenerator<TProp>(expression);
 
             return this.Add(pgen);
         }
