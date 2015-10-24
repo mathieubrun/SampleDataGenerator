@@ -5,7 +5,7 @@ namespace SampleDataGenerator
     /// <summary>
     /// Data generator entry point
     /// </summary>
-    public class Generator
+    public static class Generator
     {
         /// <summary>
         /// Creates an object generator for the type you want to generate instances of.

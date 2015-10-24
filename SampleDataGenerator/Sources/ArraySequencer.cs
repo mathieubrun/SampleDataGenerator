@@ -10,6 +10,11 @@ namespace SampleDataGenerator.Sources
     {
         private IEnumerator<TProp> enumerator;
 
+        public ArraySequencer(IEnumerable<TProp> source)
+        {
+            this.enumerator = this.Loop(source).GetEnumerator();
+        }
+
         public ArraySequencer(params TProp[] source)
         {
             if (source == null)

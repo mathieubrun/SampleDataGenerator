@@ -8,7 +8,12 @@ namespace SampleDataGenerator.Sources
     {
         private static readonly Random Rnd = new Random();
 
-        private readonly TProp[] source;
+        private readonly IEnumerable<TProp> source;
+
+        public ArrayRandomizer(IEnumerable<TProp> source)
+        {
+            this.source = source;
+        }
 
         public ArrayRandomizer(params TProp[] source)
         {
