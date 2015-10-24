@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using SampleDataGenerator.Generators;
@@ -20,6 +21,11 @@ namespace SampleDataGenerator.Builders
 
         public IObjectGeneratorBuilder<TObj> ChooseFrom(params TProp[] list)
         {
+            return ChooseFrom(list);
+        }
+
+        public IObjectGeneratorBuilder<TObj> ChooseFrom(IEnumerable<TProp> list)
+        {
             var gen = new ArraySequencer<TProp>(list);
 
             var pgen = new FuncGenerator<TProp>(() => gen.Generate(1).FirstOrDefault());
@@ -28,6 +34,11 @@ namespace SampleDataGenerator.Builders
         }
 
         public IObjectGeneratorBuilder<TObj> ChooseRandomlyFrom(params TProp[] list)
+        {
+            return ChooseRandomlyFrom(list);
+        }
+
+        public IObjectGeneratorBuilder<TObj> ChooseRandomlyFrom(IEnumerable<TProp> list)
         {
             var gen = new ArrayRandomizer<TProp>(list);
 
