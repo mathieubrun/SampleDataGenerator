@@ -6,8 +6,8 @@ Sample data generator simplifies the process of creating random data for demo pu
 Build status
 ------------
 
-[![Build status](https://img.shields.io/appveyor/ci/Mathieu/SampleDataGenerator.svg)](https://ci.appveyor.com/project/Mathieu/sampledatagenerator)
-[![Codecov status](https://img.shields.io/codecov/c/github/mathieubrun/SampleDataGenerator.svg)](https://codecov.io/github/mathieubrun/SampleDataGenerator)
+[![Build status](https://img.shields.io/appveyor/ci/Mathieu/SampleDataGenerator/master.svg)](https://ci.appveyor.com/project/Mathieu/sampledatagenerator)
+[![Codecov status](https://img.shields.io/codecov/c/github/mathieubrun/SampleDataGenerator/master.svg)](https://codecov.io/github/mathieubrun/SampleDataGenerator/master)
 [![Coverity status](https://img.shields.io/coverity/scan/6554.svg)](https://scan.coverity.com/projects/mathieubrun-sampledatagenerator)
 
 Installation
