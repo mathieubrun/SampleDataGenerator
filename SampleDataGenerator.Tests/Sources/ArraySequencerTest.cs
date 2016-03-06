@@ -9,7 +9,7 @@ namespace SampleDataGenerator.Tests.Sources
     public class ArraySequencerTest
     {
         [TestMethod]
-        public void Get_must_return_one_element()
+        public void ArraySequencer_Generate_must_return_one_element()
         {
             // arrange
             var count = 4;
@@ -24,7 +24,7 @@ namespace SampleDataGenerator.Tests.Sources
         }
 
         [TestMethod]
-        public void Get_must_return_requested_number_of_elements()
+        public void ArraySequencer_Generate_must_return_requested_number_of_elements()
         {
             // arrange
             var count = 4;
@@ -40,7 +40,7 @@ namespace SampleDataGenerator.Tests.Sources
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void Constructor_must_throw_ArgumentNullException_for_null_source()
+        public void ArraySequencer_Constructor_must_throw_ArgumentNullException_for_null_source()
         {
             int[] range = null;
 
@@ -48,7 +48,7 @@ namespace SampleDataGenerator.Tests.Sources
         }
 
         [TestMethod]
-        public void Get_must_return_null_if_source_is_empty()
+        public void ArraySequencer_Generate_must_return_null_if_source_is_empty()
         {
             // arrange
             var range = Enumerable.Empty<object>().ToArray();
@@ -62,7 +62,7 @@ namespace SampleDataGenerator.Tests.Sources
         }
 
         [TestMethod]
-        public void Get_must_return_null_array_of_correct_length_if_source_is_empty()
+        public void ArraySequencer_Generate_must_return_null_array_of_correct_length_if_source_is_empty()
         {
             // arrange
             var count = 4;
