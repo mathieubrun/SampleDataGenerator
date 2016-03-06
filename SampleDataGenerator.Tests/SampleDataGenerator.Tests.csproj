@@ -62,7 +62,7 @@
     <Compile Include="IntegrationTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Person.cs" />
+    <Compile Include="TestObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Generators\ObjectGeneratorGeneratorTest.cs" />
     <Compile Include="Generators\FuncGeneratorTest.cs" />

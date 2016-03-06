@@ -8,7 +8,7 @@ namespace SampleDataGenerator.Tests.Generators
     public class DateGeneratorTest
     {
         [TestMethod]
-        public void GetValue_returns_date_in_correct_range_for_same_date()
+        public void DateGenerator_Generate_returns_date_in_correct_range_for_same_date()
         {
             // arrange
             var start = DateTime.Now;
@@ -25,7 +25,7 @@ namespace SampleDataGenerator.Tests.Generators
         }
 
         [TestMethod]
-        public void GetValue_returns_date_in_correct_range()
+        public void DateGenerator_Generate_returns_date_in_correct_range()
         {
             // arrange
             var start = DateTime.Now;

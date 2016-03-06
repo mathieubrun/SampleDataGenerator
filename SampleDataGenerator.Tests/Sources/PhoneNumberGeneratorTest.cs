@@ -8,7 +8,7 @@ namespace SampleDataGenerator.Tests.Sources
     public class PhoneNumberGeneratorTest
     {
         [TestMethod]
-        public void Loop_must_expand_list_if_needed()
+        public void PhoneNumberGenerator_Generate_must_generate_correct_number_of_items()
         {
             // arrange
             var count = 4;
