@@ -16,44 +16,44 @@ namespace SampleDataGenerator.Tests
             var maxDate = DateTime.Now;
             var firstNames = StaticData.FirstNames;
 
-            var sut = Generator.For<Person>()
-                .For(x => x.DateOfBirth)
+            var sut = Generator.For<TestObject>()
+                .For(x => x.DateTimeProperty)
                     .Range(minDate, maxDate)
-                .For(x => x.FirstName)
+                .For(x => x.StringProperty1)
                     .ChooseFrom(firstNames)
-                .For(x => x.PhoneNumber)
+                .For(x => x.StringProperty2)
                     .PhoneNumber(StaticData.PhoneNumbersPatterns.France)
-                .For(x => x.Bio)
+                .For(x => x.StringProperty3)
                     .LoremIpsum(2)
-                .For(x => x.Identifier)
+                .For(x => x.GuidProperty)
                     .CreateUsing(() => Guid.NewGuid());
 
             // act
             var data = sut.Generate();
 
             // assert
-            Assert.IsTrue(data.DateOfBirth >= minDate);
-            Assert.IsTrue(data.DateOfBirth <= maxDate);
-            Assert.IsTrue(firstNames.Contains(data.FirstName));
-            Assert.IsFalse(data.Identifier == default(Guid));
+            Assert.IsTrue(data.DateTimeProperty >= minDate);
+            Assert.IsTrue(data.DateTimeProperty <= maxDate);
+            Assert.IsTrue(firstNames.Contains(data.StringProperty1));
+            Assert.IsFalse(data.GuidProperty == default(Guid));
         }
 
         [TestMethod]
         public void Nullable_properties()
         {
             // arrange
-            var sut = Generator.For<Person>()
-                .For(x => x.WeddingDate)
+            var sut = Generator.For<TestObject>()
+                .For(x => x.DateTimeProperty)
                     .Range(DateTime.Now.AddYears(-20), DateTime.Now)
-                .For(x => x.ForeignKeyIdentifier)
+                .For(x => x.GuidProperty)
                     .CreateUsing(() => Guid.NewGuid());
 
             // act
             var data = sut.Generate();
 
             // assert
-            Assert.IsFalse(data.ForeignKeyIdentifier == default(Guid?));
-            Assert.IsFalse(data.WeddingDate == default(DateTime?));
+            Assert.IsFalse(data.GuidProperty == default(Guid?));
+            Assert.IsFalse(data.DateTimeProperty == default(DateTime?));
         }
 
         [TestMethod]
@@ -63,21 +63,21 @@ namespace SampleDataGenerator.Tests
             var firstName = "John";
             var lastName = "Doe";
 
-            var sut = Generator.For<Person>()
-                .For(x => x.FirstName)
+            var sut = Generator.For<TestObject>()
+                .For(x => x.StringProperty1)
                     .CreateUsing(() => firstName)
-                .For(x => x.LastName)
+                .For(x => x.StringProperty2)
                     .CreateUsing(() => lastName)
-                .For(x => x.Email)
-                    .Email(x => x.FirstName, x => x.LastName);
+                .For(x => x.StringProperty3)
+                    .Email(x => x.StringProperty1, x => x.StringProperty2);
 
             // act
             var data = sut.Generate();
 
             // assert
-            Assert.AreEqual(firstName, data.FirstName);
-            Assert.AreEqual(lastName, data.LastName);
-            Assert.AreEqual(string.Format("{0}@{1}.com", firstName, lastName), data.Email);
+            Assert.AreEqual(firstName, data.StringProperty1);
+            Assert.AreEqual(lastName, data.StringProperty2);
+            Assert.AreEqual(string.Format("{0}@{1}.com", firstName, lastName), data.StringProperty3);
         }
 
         [TestMethod]
@@ -87,21 +87,21 @@ namespace SampleDataGenerator.Tests
             var firstName = "John";
             var lastName = "Doe";
 
-            var sut = Generator.For<Person>()
-                .For(x => x.Email)
-                    .Email(x => x.FirstName, x => x.LastName)
-                .For(x => x.FirstName)
+            var sut = Generator.For<TestObject>()
+                .For(x => x.StringProperty3)
+                    .Email(x => x.StringProperty1, x => x.StringProperty2)
+                .For(x => x.StringProperty1)
                     .CreateUsing(() => firstName)
-                .For(x => x.LastName)
+                .For(x => x.StringProperty2)
                     .CreateUsing(() => lastName);
 
             // act
             var data = sut.Generate();
 
             // assert
-            Assert.AreEqual(firstName, data.FirstName);
-            Assert.AreEqual(lastName, data.LastName );
-            Assert.AreEqual("@.com", data.Email );
+            Assert.AreEqual(firstName, data.StringProperty1);
+            Assert.AreEqual(lastName, data.StringProperty2);
+            Assert.AreEqual("@.com", data.StringProperty3);
         }
 
         [TestMethod]
@@ -111,23 +111,23 @@ namespace SampleDataGenerator.Tests
             var firstName = "John";
             var company = "Smart Company";
 
-            var sut = Generator.For<Person>()
-                .For(x => x.FirstName)
+            var sut = Generator.For<TestObject>()
+                .For(x => x.StringProperty1)
                     .CreateUsing(() => firstName)
-                .For(x => x.Company)
+                .For(x => x.StringProperty2)
                     .CreateUsing(() => company)
-                .For(x => x.Email)
-                    .Email(x => x.FirstName, x => x.Company)
-                .For(x => x.Website)
-                    .Website(x => x.Company);
+                .For(x => x.StringProperty3)
+                    .Email(x => x.StringProperty1, x => x.StringProperty2)
+                .For(x => x.StringProperty4)
+                    .Website(x => x.StringProperty2);
 
             // act
             var data = sut.Generate();
 
             // assert
-            Assert.AreEqual(firstName, data.FirstName);
-            Assert.AreEqual("John@SmartCompany.com", data.Email);
-            Assert.AreEqual("http://www.SmartCompany.com", data.Website);
+            Assert.AreEqual(firstName, data.StringProperty1);
+            Assert.AreEqual("John@SmartCompany.com", data.StringProperty3);
+            Assert.AreEqual("http://www.SmartCompany.com", data.StringProperty4);
         }
     }
 }
